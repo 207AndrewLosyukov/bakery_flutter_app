@@ -1,83 +1,82 @@
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
-  final double width;
-  final double height;
+  final String url;
 
-  const ProductCard({Key? key, required this.width, required this.height})
-      : super(key: key);
+  const ProductCard({Key? key, required this.url}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          Container(
-            decoration: ShapeDecoration(
-              image: const DecorationImage(
-                image: NetworkImage(
-                    "https://i.ytimg.com/vi/p94QPaI4SxE/mqdefault.jpg"),
-                fit: BoxFit.cover,
-              ),
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(32.0),
-                side: const BorderSide(
-                  width: 1,
-                  color: Colors.black,
+    return AspectRatio(
+      aspectRatio: 16 / 9,
+      child: Container(
+        decoration: ShapeDecoration(
+          image: DecorationImage(
+            image: NetworkImage(
+              url,
+            ),
+            fit: BoxFit.cover,
+          ),
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(32.0),
+            side: const BorderSide(
+              width: 1,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(14.0),
+                child: Text(
+                  "Красивое\nописание товара",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontFamily: 'Railway',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: width / 10, top: height * 2 / 3),
-            child: Expanded(
-              child: Wrap(
-                spacing: width / 15,
-                children: [
+              const Spacer(),
+              Wrap(
+                spacing: 10,
+                children: const [
                   // Сюда складывать все тэги
-                  ButtonTag(width: width, height: height),
-                  ButtonTag(width: width, height: height),
+                  ButtonTag(),
+                  ButtonTag(),
                 ],
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 }
 
 class ButtonTag extends StatelessWidget {
-  final double width;
-  final double height;
-
-  const ButtonTag({Key? key, required this.width, required this.height})
-      : super(key: key);
+  const ButtonTag({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: height / 5.0,
-      width: width / 4.286,
+    return Container(
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25.0),
+        border: Border.all(width: 1, color: Colors.black),
+        color: Colors.white54,
+        // закругленность маленьких кнопок
+      ),
+      // пропорции маленьких кнопок относительно
       child: Expanded(
-        child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.white54),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(25.0),
-                side: const BorderSide(
-                  width: 1,
-                  color: Colors.black,
-                ),
-              ),
-            ),
-          ),
-          onPressed: () {},
+        child: InkWell(
+          onTap: () {},
           child: const Text(
             "Some tag",
             style: TextStyle(
@@ -90,5 +89,3 @@ class ButtonTag extends StatelessWidget {
     );
   }
 }
-
-//
