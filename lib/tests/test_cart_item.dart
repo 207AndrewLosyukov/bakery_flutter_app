@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp2> {
     //     onAmountDecreased: _decreaseCounter,
     //   ),
     // );
-    return const Scaffold(body: CartItemList());
+    return const Scaffold(body: CartItemList(height: 478,));
   }
 }
 

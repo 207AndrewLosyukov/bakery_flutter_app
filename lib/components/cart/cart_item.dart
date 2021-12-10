@@ -2,36 +2,24 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/models/product.dart';
 
-class CardItemData {
-  final String description;
-  final String tag;
-  int amount;
-  final String imageUrl;
-  final int price;
+/// This is the stateless widget that the main application instantiates.
+class CartItem extends StatelessWidget {
+  final Product data;
+  final int amount;
   final void Function(int) onAmountIncreased;
   final void Function(int) onAmountDecreased;
   final int index;
 
-  CardItemData({
-    required this.description,
-    required this.tag,
-    required this.amount,
-    required this.imageUrl,
-    required this.price,
-    required this.onAmountIncreased,
-    required this.onAmountDecreased,
-    required this.index,
-  });
-}
-
-/// This is the stateless widget that the main application instantiates.
-class CartItem extends StatelessWidget {
-  final CardItemData data;
-
   const CartItem({
     Key? key,
     required this.data,
+    required this.amount,
+    required this.onAmountIncreased,
+    required this.onAmountDecreased,
+    required this.index,
+
   }) : super(
           key: key,
         );
@@ -53,7 +41,7 @@ class CartItem extends StatelessWidget {
                       width: 100,
                       child: Image(
                         fit: BoxFit.fitHeight,
-                        image: NetworkImage(data.imageUrl),
+                        image: NetworkImage(data.imageUrl!),
                       ),
                     ),
                   ),
@@ -67,33 +55,42 @@ class CartItem extends StatelessWidget {
                             Expanded(
                               flex: 3,
                               child: Text(
-                                data.description,
+                                data.title,
                                 style: const TextStyle(fontSize: 20),
                               ),
                             ),
                             const SizedBox(
                               height: 8,
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Text(
-                                data.tag,
-                                style: const TextStyle(color: Colors.grey),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    IconButton(
-                                        onPressed: () => data.onAmountIncreased(data.index),
-                                        icon: const Icon(Icons.add_rounded)),
-                                    Text(data.amount.toString()),
-                                    IconButton(
-                                        onPressed: () => data.onAmountDecreased(data.index),
-                                        icon: const Icon(Icons.remove_rounded)),
-                                  ]),
+                            // Expanded(
+                            //   flex: 2,
+                            //   child: Text(
+                            //     data.tags data.tags.toString(),
+                            //     style: const TextStyle(color: Colors.grey),
+                            //   ),
+                            // ),
+                            Row(
+                              children: [
+                                Expanded(child:
+                                  Text('\$'+data.price.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                                ),
+                                
+                                Expanded(
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      IconButton(
+                                          onPressed: () => onAmountIncreased(index),
+                                          icon: const Icon(Icons.add_rounded)),
+                                      Text(
+                                        amount.toString(),
+                                      ),
+                                      IconButton(
+                                          onPressed: () => onAmountDecreased(index),
+                                          icon: const Icon(Icons.remove_rounded)),
+                                    ]),
+                                )],
                             ),
                           ],
                         ),

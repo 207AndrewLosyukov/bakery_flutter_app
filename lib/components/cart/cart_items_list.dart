@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/models/product.dart';
 
+import 'cart_fake_data.dart';
 import 'cart_item.dart';
 
-class CartStore {
-  // List<int> ;
-  // List<int>
-
-  CartStore() {}
-}
-
 class CartItemList extends StatefulWidget {
-  //final Future<List> quiz;
-
+  final double height;
   const CartItemList({
     Key? key,
+    required this.height,
   }) : super(
           key: key,
         );
@@ -23,74 +18,59 @@ class CartItemList extends StatefulWidget {
 }
 
 class _CartItemListState extends State<CartItemList> {
-  bool loading = true;
-
-  // _CartItemListState() {
-  //   // widget.quiz.then((List value) {
-  //   //   // loop through the json object
-  //   //   for (var i = 0; i < value.length; i++) {
-  //   //     // add the ListTile to an array
-  //   //     listArray.add(new ListTile(title: new Text(value[i].name));
-  //   //
-  //   //     }
-  //   //
-  //   //         //use setState to refresh UI
-  //   //         setState(()
-  //   //     {
-  //   //       loading = false;
-  //   //     });
-  //   //
-  //   // });
-  // }
-  int _counter = 22;
-  final List<String> entries = <String>['A', 'B', 'C', 'A', 'A'];
-  final List<int> colorCodes = <int>[
-    600,
-    500,
-    100,
-    3124,
-    312,
-    123,
-    123,
-    321,
-    1,
-    32
-  ];
-
   void _increaseCounter(int index) {
     setState(() {
-      ++colorCodes[index];
+      ++amounts[index];
     });
   }
 
   void _decreaseCounter(int index) {
     setState(() {
-      --colorCodes[index];
+      --amounts[index];
+      if (amounts[index] == 0) {
+        _removeItem(index);
+      }
     });
+  }
+
+  void _removeItem(int index) {
+    if (amounts[index] == 0) {
+      amounts.removeAt(index);
+    }
+  }
+
+  Widget _getItem(int index) {
+    return CartItem(
+        onAmountDecreased: _decreaseCounter,
+        onAmountIncreased: _increaseCounter,
+        index: index,
+        amount: amounts[index],
+        data: Product(
+          title: titles[index],
+          tags: [],
+          imageUrl: images[index],
+          price: prices[index],
+          id: '',
+        ));
+  }
+
+  int getTotalPrice() {
+    throw UnimplementedError('From db');
+  }
+
+  int size() {
+    throw UnimplementedError('From db');
   }
 
   @override
   Widget build(BuildContext context) {
-
     return SizedBox(
-      height: 300,
+      height: widget.height,
       child: ListView.builder(
           padding: const EdgeInsets.all(8),
-          itemCount: entries.length,
+          itemCount: amounts.length,
           itemBuilder: (BuildContext context, int index) {
-            return CartItem(
-              data: CardItemData(
-                amount: colorCodes[index],
-                description: 'Круассан с вишней',
-                tag: 'Круасссаны | 500г',
-                imageUrl:
-                    'https://thumbs.dreamstime.com/b/%D0%BA%D1%80%D1%83%D0%B0%D1%81%D1%81%D0%B0%D0%BD-%D0%BD%D0%B0-%D1%87%D0%B5%D1%80%D0%BD%D0%BE%D0%BC-%D1%84%D0%BE%D0%BD%D0%B5-%D1%81-%D1%81%D0%B0%D1%85%D0%B0%D1%80%D0%BE%D0%BC-159283320.jpg',
-                price: 1,
-                onAmountIncreased: _increaseCounter,
-                onAmountDecreased: _decreaseCounter,
-                index: index,
-              ),
-            );
+            return _getItem(index);
           }),
     );
   }
