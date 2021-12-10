@@ -20,8 +20,14 @@ class MainPage extends StatelessWidget {
             color: Colors.orange[100],
             child: Row(
               children: [
-                Image.network(
-                    "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 5),
+                  child: CircleAvatar(
+                    radius: 45,
+                    child: Image.network(
+                        "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
+                  ),
+                ),
                 const SizedBox(width: 10),
                 Expanded(
                   child: Column(

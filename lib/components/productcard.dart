@@ -71,18 +71,14 @@ class ButtonTag extends StatelessWidget {
         borderRadius: BorderRadius.circular(25.0),
         border: Border.all(width: 1, color: Colors.black),
         color: Colors.white54,
-        // закругленность маленьких кнопок
       ),
-      // пропорции маленьких кнопок относительно
-      child: Expanded(
-        child: InkWell(
-          onTap: () {},
-          child: const Text(
-            "Some tag",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 10,
-            ),
+      child: InkWell(
+        onTap: () {},
+        child: const Text(
+          "Some tag",
+          style: TextStyle(
+            color: Colors.black,
+            fontSize: 10,
           ),
         ),
       ),
