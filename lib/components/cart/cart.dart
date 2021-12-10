@@ -19,7 +19,7 @@ class Cart extends StatelessWidget {
     return Center(
       child: Column(
           children: const [
-            CartItemList(height = 500),
+            CartItemList(height: 500),
           ]
       ),
     );
