@@ -88,6 +88,32 @@ class MainPage extends StatelessWidget {
               itemCount: urls.length,
               itemBuilder: (context, i) => ProductCard(url: urls[i])),
         ),
+        Container(height: 10, color: Colors.orange[100]),
+        SizedBox(
+          height: 200,
+          child: DefaultTabController(
+            length: 3,
+            child: Scaffold(
+              appBar: AppBar(
+                toolbarHeight: 0,
+                bottom: const TabBar(
+                  tabs: [
+                    Tab(text: "Новинки"),
+                    Tab(text: "Скидка"),
+                    Tab(text: "Рекомендация"),
+                  ],
+                ),
+              ),
+              body: const TabBarView(
+                children: [
+                  Icon(Icons.directions_car),
+                  Icon(Icons.directions_transit),
+                  Icon(Icons.directions_bike),
+                ],
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }
