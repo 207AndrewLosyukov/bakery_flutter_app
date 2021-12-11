@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
-
-import 'cart_fake_data.dart';
+import 'package:shop_flutter_app/redux/cart_page/state.dart';
+import 'package:shop_flutter_app/redux/state.dart';
 import 'cart_item.dart';
 
 class CartItemList extends StatefulWidget {
   final double height;
+  final double padding;
+
   const CartItemList({
     Key? key,
     required this.height,
+    required this.padding,
   }) : super(
           key: key,
         );
@@ -19,37 +24,37 @@ class CartItemList extends StatefulWidget {
 
 class _CartItemListState extends State<CartItemList> {
   void _increaseCounter(int index) {
-    setState(() {
-      ++amounts[index];
-    });
+    // setState(() {
+    //   ++amounts[index];
+    // });
   }
 
   void _decreaseCounter(int index) {
     setState(() {
-      --amounts[index];
-      if (amounts[index] == 0) {
-        _removeItem(index);
-      }
+      // --amounts[index];
+      // if (amounts[index] == 0) {
+      //   _removeItem(index);
+      // }
     });
   }
 
   void _removeItem(int index) {
-    if (amounts[index] == 0) {
-      amounts.removeAt(index);
-    }
+    // if (amounts[index] == 0) {
+    //   amounts.removeAt(index);
+    // }
   }
 
-  Widget _getItem(int index) {
+  Widget _getItem(int index, List<CartProduct> items) {
     return CartItem(
         onAmountDecreased: _decreaseCounter,
         onAmountIncreased: _increaseCounter,
         index: index,
-        amount: amounts[index],
+        amount: items[index].amount,
         data: Product(
-          title: titles[index],
+          title: items[index].product.title,
           tags: [],
-          imageUrl: images[index],
-          price: prices[index],
+          imageUrl: items[index].product.title,
+          price: items[index].product.price,
           id: '',
         ));
   }
@@ -64,14 +69,23 @@ class _CartItemListState extends State<CartItemList> {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: widget.height,
-      child: ListView.builder(
-          padding: const EdgeInsets.all(8),
-          itemCount: amounts.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _getItem(index);
-          }),
+    return StoreConnector<GlobalState, CartPageState>(
+      distinct: true,
+      converter: (store) => store.state.cartPage,
+      builder: (context, state) {
+        if (state.items.isEmpty) {
+          return const Text('Корзина пустая!');
+        } else {
+          return SizedBox(
+            child: ListView.builder(
+                padding: EdgeInsets.all(widget.padding),
+                itemCount: state.items.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _getItem(index, state.items);
+                }),
+          );
+        }
+      }
     );
   }
 }
