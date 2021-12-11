@@ -19,7 +19,6 @@ class CartItem extends StatelessWidget {
     required this.onAmountIncreased,
     required this.onAmountDecreased,
     required this.index,
-
   }) : super(
           key: key,
         );
@@ -28,76 +27,86 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        child: Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: SizedBox(
-              height: 100,
-              child: Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: SizedBox(
-                      height: 100,
-                      width: 100,
-                      child: Image(
-                        fit: BoxFit.fitHeight,
-                        image: NetworkImage(data.imageUrl!),
-                      ),
+        shape: RoundedRectangleBorder(
+          // side: const BorderSide(color: Colors.white70, width: 1),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        margin: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+        child: SizedBox(
+            height: 100,
+            child: Row(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: SizedBox(
+                    height: 100,
+                    width: 100,
+                    child: Image(
+                      fit: BoxFit.fitHeight,
+                      image: NetworkImage(data.imageUrl!),
                     ),
                   ),
-                  Expanded(
-                      flex: 5,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Text(
-                                data.title,
-                                style: const TextStyle(fontSize: 20),
-                              ),
+                ),
+                Expanded(
+                    flex: 5,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            flex: 3,
+                            child: Text(
+                              data.title,
+                              style: const TextStyle(fontSize: 20),
                             ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            // Expanded(
-                            //   flex: 2,
-                            //   child: Text(
-                            //     data.tags data.tags.toString(),
-                            //     style: const TextStyle(color: Colors.grey),
-                            //   ),
-                            // ),
-                            Row(
-                              children: [
-                                Expanded(child:
-                                  Text('\$'+data.price.toString(), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                          ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          // Expanded(
+                          //   flex: 2,
+                          //   child: Text(
+                          //     data.tags data.tags.toString(),
+                          //     style: const TextStyle(color: Colors.grey),
+                          //   ),
+                          // ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  '\$' + data.price.toString(),
+                                  style: const TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
                                 ),
-                                
-                                Expanded(
-                                  child: Row(
+                              ),
+                              Expanded(
+                                child: Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       IconButton(
-                                          onPressed: () => onAmountIncreased(index),
+                                          onPressed: () =>
+                                              onAmountIncreased(index),
                                           icon: const Icon(Icons.add_rounded)),
                                       Text(
                                         amount.toString(),
                                       ),
                                       IconButton(
-                                          onPressed: () => onAmountDecreased(index),
-                                          icon: const Icon(Icons.remove_rounded)),
+                                          onPressed: () =>
+                                              onAmountDecreased(index),
+                                          icon:
+                                              const Icon(Icons.remove_rounded)),
                                     ]),
-                                )],
-                            ),
-                          ],
-                        ),
-                      )),
-                ],
-              )),
-        ),
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    )),
+              ],
+            )),
       ),
     );
   }
