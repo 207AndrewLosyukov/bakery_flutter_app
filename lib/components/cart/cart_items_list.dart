@@ -7,13 +7,9 @@ import 'package:shop_flutter_app/redux/state.dart';
 import 'cart_item.dart';
 
 class CartItemList extends StatefulWidget {
-  final double height;
-  final double padding;
 
   const CartItemList({
     Key? key,
-    required this.height,
-    required this.padding,
   }) : super(
           key: key,
         );
@@ -50,13 +46,7 @@ class _CartItemListState extends State<CartItemList> {
         onAmountIncreased: _increaseCounter,
         index: index,
         amount: items[index].amount,
-        data: Product(
-          title: items[index].product.title,
-          tags: [],
-          imageUrl: items[index].product.title,
-          price: items[index].product.price,
-          id: '',
-        ));
+        data: items[index].product);
   }
 
   int getTotalPrice() {
@@ -78,7 +68,7 @@ class _CartItemListState extends State<CartItemList> {
         } else {
           return SizedBox(
             child: ListView.builder(
-                padding: EdgeInsets.all(widget.padding),
+                padding: const EdgeInsets.all(0),
                 itemCount: state.items.length,
                 itemBuilder: (BuildContext context, int index) {
                   return _getItem(index, state.items);
