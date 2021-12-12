@@ -16,7 +16,6 @@ class IncreaseNumberOfProducts
   call(Store<GlobalState> store, extraArgument) {
     throw UnimplementedError();
   }
-
 }
 
 // class AddToFavoriteThunk
