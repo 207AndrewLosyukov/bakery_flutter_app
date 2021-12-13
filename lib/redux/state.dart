@@ -1,7 +1,7 @@
 import 'package:shop_flutter_app/redux/cart_page/state.dart';
 
 class GlobalState {
-  static GlobalState initState = GlobalState(
+  static final GlobalState initState = GlobalState(
     cartPage: CartPageState.initState,
   );
 

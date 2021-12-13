@@ -2,12 +2,12 @@ import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 /// This is the stateless widget that the main application instantiates.
 class CartItem extends StatelessWidget {
-  final Product data;
-  final int amount;
+  final CartProduct data;
   final void Function(int) onAmountIncreased;
   final void Function(int) onAmountDecreased;
   final int index;
@@ -15,7 +15,6 @@ class CartItem extends StatelessWidget {
   const CartItem({
     Key? key,
     required this.data,
-    required this.amount,
     required this.onAmountIncreased,
     required this.onAmountDecreased,
     required this.index,
@@ -43,7 +42,7 @@ class CartItem extends StatelessWidget {
                     width: 100,
                     child: Image(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(data.imageUrl!),
+                      image: NetworkImage(data.product.imageUrl!),
                     ),
                   ),
                 ),
@@ -57,7 +56,7 @@ class CartItem extends StatelessWidget {
                           Expanded(
                             flex: 3,
                             child: Text(
-                              data.title,
+                              data.product.title,
                               style: const TextStyle(fontSize: 20),
                             ),
                           ),
@@ -75,7 +74,7 @@ class CartItem extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  '\$' + data.price.toString(),
+                                  '\$' + data.product.price.toString(),
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
@@ -91,7 +90,7 @@ class CartItem extends StatelessWidget {
                                               onAmountIncreased(index),
                                           icon: const Icon(Icons.add_rounded)),
                                       Text(
-                                        amount.toString(),
+                                        data.amount.toString(),
                                       ),
                                       IconButton(
                                           onPressed: () =>
