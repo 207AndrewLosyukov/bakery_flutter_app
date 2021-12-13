@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/screens/cart.dart';
 import 'package:shop_flutter_app/screens/main.dart';
+import 'package:shop_flutter_app/screens/profile.dart';
 
 void main() async {
   await Dependencies.init();
@@ -55,7 +57,8 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       // ),
       body: <Widget>[
         const MainScreen(),
-        const MainScreen(),
+        const CartScreen(),
+        const ProfileScreen(),
       ][currentTab],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentTab,
@@ -69,7 +72,7 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
               height: 10,
               color: Colors.red,
             ),
-            label: 'sdfdsf',
+            label: 'Main',
           ),
           BottomNavigationBarItem(
             icon: Container(
@@ -77,7 +80,15 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
               height: 10,
               color: Colors.red,
             ),
-            label: 'sdfdsf',
+            label: 'Cart',
+          ),
+          BottomNavigationBarItem(
+            icon: Container(
+              width: 10,
+              height: 10,
+              color: Colors.red,
+            ),
+            label: 'Profile',
           ),
         ],
       ),

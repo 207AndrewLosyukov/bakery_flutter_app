@@ -8,7 +8,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:shop_flutter_app/components/cart/cart.dart';
+import 'package:shop_flutter_app/screens/cart.dart';
 import 'package:shop_flutter_app/components/cart/cart_item.dart';
 import 'package:shop_flutter_app/components/cart/cart_items_list.dart';
 
@@ -96,7 +96,7 @@ class _MyAppState extends State<MyApp2> {
     //     onAmountDecreased: _decreaseCounter,
     //   ),
     // );
-    return const Scaffold(body: Cart(height: 478,));
+    return const Scaffold(body: CartScreen());
   }
 }
 
