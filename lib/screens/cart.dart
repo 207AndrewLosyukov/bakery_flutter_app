@@ -21,7 +21,7 @@ class CartScreen extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              Expanded(child: CartItemList()),
+              const Expanded(child: CartItemList()),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   textStyle: const TextStyle(fontSize: 20),
