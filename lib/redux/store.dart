@@ -1,5 +1,6 @@
 import 'package:redux/redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/redux/main_page/reducer.dart';
 import 'package:shop_flutter_app/redux/state.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
@@ -9,8 +10,7 @@ import 'cart_page/state.dart';
 class MyStoreBuilder {
   MyStoreBuilder._();
 
-  static Store<GlobalState> build() =>
-      Store<GlobalState>(
+  static Store<GlobalState> build() => Store<GlobalState>(
         _globalReducer,
         initialState: GlobalState.initState,
         middleware: [
@@ -22,9 +22,10 @@ class MyStoreBuilder {
 }
 
 GlobalState _globalReducer(GlobalState state, action) => GlobalState(
-  cartPage: cartPageReducer(state.cartPage, action)
-  // mainPage: mainPageReducer(state.mainPage, action),
-);
+    cartPage: cartPageReducer(state.cartPage, action),
+    mainPage: mainPageReducer(state.mainPage, action)
+    // mainPage: mainPageReducer(state.mainPage, action),
+    );
 
 // final mainPageReducer = combineReducers<MainPageState>([
 //   TypedReducer<MainPageState, SetFeedItemsAction>(_setFeedItemsAction),

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
   final String url;
+  final bool showTags;
 
-  const ProductCard({Key? key, required this.url}) : super(key: key);
+  const ProductCard({Key? key, required this.url, this.showTags = true})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,31 +29,33 @@ class ProductCard extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Padding(
-                padding: EdgeInsets.all(14.0),
+                padding: EdgeInsets.all(8.0),
                 child: Text(
                   "Красивое\nописание товара",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 18,
+                    fontSize: 14,
                     fontFamily: 'Railway',
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
               const Spacer(),
-              Wrap(
-                spacing: 10,
-                children: const [
-                  // Сюда складывать все тэги
-                  ButtonTag(),
-                  ButtonTag(),
-                ],
-              ),
+              const SizedBox(height: 8),
+              if (showTags)
+                Wrap(
+                  spacing: 10,
+                  children: const [
+                    // Сюда складывать все тэги
+                    ButtonTag(),
+                    ButtonTag(),
+                  ],
+                ),
             ],
           ),
         ),
@@ -65,22 +69,9 @@ class ButtonTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25.0),
-        border: Border.all(width: 1, color: Colors.black),
-        color: Colors.white54,
-      ),
-      child: InkWell(
-        onTap: () {},
-        child: const Text(
-          "Some tag",
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 10,
-          ),
-        ),
+    return Chip(
+      label: Text(
+        "Some tag",
       ),
     );
   }

@@ -6,11 +6,11 @@ import 'package:shop_flutter_app/models/cart_product.dart';
 
 import '../state.dart';
 
-// class ChangeTabList
-//     extends CallableThunkActionWithExtraArgument<GlobalState, WorkerProvider> {
+// class IncreaseNumberOfProducts
+//     extends CallableThunkActionWithExtraArgument<GlobalState> {
 //   final CartProduct item;
 
-//   ChangeTabList(this.item);
+//   IncreaseNumberOfProducts(this.item);
 
 //   @override
 //   call(Store<GlobalState> store, extraArgument) {

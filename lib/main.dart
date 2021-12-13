@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
     return StoreProvider(
       store: Dependencies.instance.store,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           // This is the theme of your application.
