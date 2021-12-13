@@ -8,7 +8,7 @@ class CartScreen extends StatelessWidget {
     return Container(
       color: Colors.orange[100],
       child: const SafeArea(
-        child: Text("Cart")
+        child: Center(child: Text("Cart"))
       ),
     );
   }

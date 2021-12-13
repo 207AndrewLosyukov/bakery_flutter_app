@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
     return Container(
       color: Colors.orange[100],
       child: const SafeArea(
-        child: Text("Profile")
+        child: Center(child: Text("Profile"))
       ),
     );
   }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
+import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/screens/navigator.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -24,10 +26,14 @@ class MainScreen extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10, top: 5),
-                      child: CircleAvatar(
-                        radius: 45,
-                        child: Image.network(
-                            "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
+                      child: GestureDetector(
+                        onTap: () =>
+                            Dependencies.instance.navigator.openProfilePage(),
+                        child: CircleAvatar(
+                          radius: 45,
+                          child: Image.network(
+                              "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 10),
@@ -84,8 +90,8 @@ class MainScreen extends StatelessWidget {
               child: ListView.separated(
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   separatorBuilder: (context, index) => const SizedBox(
-                    width: 20,
-                  ),
+                        width: 20,
+                      ),
                   scrollDirection: Axis.horizontal,
                   itemCount: urls.length,
                   itemBuilder: (context, i) => ProductCard(url: urls[i])),

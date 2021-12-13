@@ -3,6 +3,7 @@ import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/screens/cart.dart';
 import 'package:shop_flutter_app/screens/main.dart';
+import 'package:shop_flutter_app/screens/navigator.dart';
 import 'package:shop_flutter_app/screens/profile.dart';
 
 void main() async {
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.blue,
         ),
-        home: const MainBottomNavigationBar(),
+        home: MainBottomNavigationBar(key: AppNavigator.bottomBarKey),
+        navigatorKey: AppNavigator.navigatorKey,
       ),
     );
   }
@@ -43,11 +45,15 @@ class MainBottomNavigationBar extends StatefulWidget {
 
   @override
   State<MainBottomNavigationBar> createState() =>
-      _MainBottomNavigationBarState();
+      MainBottomNavigationBarState();
 }
 
-class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
+class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
   int currentTab = 0;
+
+  openMainPage() => setState(() => currentTab = 0);
+  openCartPage() => setState(() => currentTab = 1);
+  openProfilePage() => setState(() => currentTab = 2);
 
   @override
   Widget build(BuildContext context) {
@@ -55,11 +61,14 @@ class _MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       // appBar: AppBar(
       //   title: const Text('TabBar Widget'),
       // ),
-      body: <Widget>[
-        const MainScreen(),
-        const CartScreen(),
-        const ProfileScreen(),
-      ][currentTab],
+      body: AnimatedSwitcher(
+        duration: Duration(milliseconds: 200),
+        child: <Widget>[
+          const MainScreen(),
+          const CartScreen(),
+          const ProfileScreen(),
+        ][currentTab],
+      ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentTab,
         onTap: (int i) {
