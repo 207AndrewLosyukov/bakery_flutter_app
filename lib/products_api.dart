@@ -7,8 +7,6 @@ abstract class ProductsApi {
 class MockProductsApi implements ProductsApi {
   @override
   Future<List<Product>> getProducts() async {
-    return [
-      Product(id: 'product1', title: 'Product', price: 100, tags: [])
-    ];
+    return [Product(id: 'product1', title: 'Product', price: 100, tags: [])];
   }
 }

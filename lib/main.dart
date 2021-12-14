@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
           // or simply save your changes to "hot reload" in a Flutter IDE).
           // Notice that the counter didn't reset back to zero; the application
           // is not restarted.
-          primarySwatch: Colors.blue,
+          primarySwatch: Colors.brown,
         ),
         home: MainBottomNavigationBar(key: AppNavigator.bottomBarKey),
         navigatorKey: AppNavigator.navigatorKey,
@@ -63,7 +63,7 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       //   title: const Text('TabBar Widget'),
       // ),
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         child: <Widget>[
           const MainScreen(),
           const CartScreen(),

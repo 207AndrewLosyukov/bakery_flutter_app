@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
   static const List<String> urls = [
+    "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
+    "https://thumbs.dreamstime.com/b/булочки-пекарни-с-маковыми-семененами-и-сезамом-творога-варенье-на-202153719.jpg",
+    "https://image.freepik.com/free-photo/assortment-of-baked-goods-in-black-background_73558-4085.jpg",
+    "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
+    "https://thumbs.dreamstime.com/b/булочки-пекарни-с-маковыми-семененами-и-сезамом-творога-варенье-на-202153719.jpg",
+    "https://image.freepik.com/free-photo/assortment-of-baked-goods-in-black-background_73558-4085.jpg",
     "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
     "https://thumbs.dreamstime.com/b/булочки-пекарни-с-маковыми-семененами-и-сезамом-творога-варенье-на-202153719.jpg",
     "https://image.freepik.com/free-photo/assortment-of-baked-goods-in-black-background_73558-4085.jpg",
@@ -72,7 +79,8 @@ class _MainScreenState extends State<MainScreen> {
                               child: const Text(
                                 "Перейти в профиль",
                               ),
-                              onTap: () {},
+                              onTap: () => Dependencies.instance.navigator
+                                  .openProfilePage(),
                             ),
                           ],
                         ),
@@ -160,7 +168,12 @@ class _MainScreenState extends State<MainScreen> {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
-          return ProductCard(url: MainScreen.urls[i], showTags: false);
+          return GestureDetector(
+            child: ProductCard(url: MainScreen.urls[i], showTags: false),
+            // когда будет готова апишка передать сюда текущий продукт
+            onTap: () => Dependencies.instance.navigator
+                .openProduct(Product.testProduct)(),
+          );
         },
         childCount: MainScreen.urls.length,
       ),
@@ -168,7 +181,7 @@ class _MainScreenState extends State<MainScreen> {
         mainAxisSpacing: 17,
         crossAxisSpacing: 12,
         crossAxisCount: 2,
-        childAspectRatio: 16 / 10,
+        childAspectRatio: 16 / 9,
       ),
     );
   }
@@ -177,9 +190,14 @@ class _MainScreenState extends State<MainScreen> {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
-          return ProductCard(
-              url: MainScreen.urls[MainScreen.urls.length - i - 1],
-              showTags: false);
+          return GestureDetector(
+            child: ProductCard(
+                url: MainScreen.urls[MainScreen.urls.length - i - 1],
+                showTags: false),
+            // когда будет готова апишка передать сюда текущий продукт
+            onTap: () => Dependencies.instance.navigator
+                .openProduct(Product.testProduct)(),
+          );
         },
         childCount: MainScreen.urls.length,
       ),

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/models/product.dart';
 
 class ProductCard extends StatelessWidget {
-  final String url;
+  
+  final String? url;
+
   final bool showTags;
 
-  const ProductCard({Key? key, required this.url, this.showTags = true})
+  final Product? product;
+
+  const ProductCard(
+      {Key? key, required this.url, this.product, this.showTags = true})
       : super(key: key);
 
   @override
@@ -15,7 +21,7 @@ class ProductCard extends StatelessWidget {
         decoration: ShapeDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              url,
+              url ?? "",
             ),
             fit: BoxFit.cover,
           ),
@@ -69,7 +75,7 @@ class ButtonTag extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Chip(
+    return const Chip(
       label: Text(
         "Some tag",
       ),
