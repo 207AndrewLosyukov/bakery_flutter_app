@@ -7,16 +7,16 @@ import 'package:shop_flutter_app/models/product.dart';
 class MainPageState {
   static MainPageState initState = MainPageState(
     items: [
-      CartProduct(
-          3,
-          Product(
-            title: "Рыба",
-            tags: [],
-            imageUrl:
-                "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
-            price: 98,
-            id: '',
-          ))
+      // CartProduct(
+      //     3,
+      //     Product(
+      //       title: "Рыба",
+      //       tags: [],
+      //       imageUrl:
+      //           "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
+      //       price: 98,
+      //       id: '',
+      //     ))
     ],
   );
 
