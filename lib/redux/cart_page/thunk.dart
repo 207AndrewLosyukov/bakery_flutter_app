@@ -43,6 +43,19 @@ class DecreaseNumberOfProducts
   }
 }
 
+class ClearCart
+    extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+
+  ClearCart();
+
+  @override
+  call(Store<GlobalState> store, Dependencies extraArgument) {
+    final items = store.state.cartPage.items.toList();
+    items.clear();
+    store.dispatch(SetCartItemsListAction(items));
+  }
+}
+
 // class SubmitOrder
 //     extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
 //   final

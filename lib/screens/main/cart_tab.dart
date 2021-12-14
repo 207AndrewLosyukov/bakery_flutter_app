@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/components/cart/cart_items_list.dart';
 import 'package:shop_flutter_app/screens/order.dart';
 
+import '../../dependencies.dart';
+
 class CartTab extends StatelessWidget {
   const CartTab({Key? key}) : super(key: key);
 
@@ -29,7 +31,7 @@ class CartTab extends StatelessWidget {
                   primary: Colors.black,
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderScreen()));
+                  Dependencies.instance.navigator.openOrder();
                 },
                 child: const Text('Оформить заказ'),
               ),

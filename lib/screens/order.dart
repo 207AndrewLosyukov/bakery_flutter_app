@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'dart:ffi';
+import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/screens/navigator.dart';
 
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/screens/ready_order.dart';
@@ -131,7 +133,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   // the form is invalid.
                   if (_formKey.currentState!.validate()) {
                     log(emailController.text);
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const ReadyOrderScreen()));
+                    Dependencies.instance.navigator.openReadyOrder();
                   }
                 },
                 child: const Text('Submit'),
