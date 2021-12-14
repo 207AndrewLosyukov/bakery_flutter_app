@@ -1,23 +1,53 @@
-import 'dart:html';
+import 'dart:developer';
 
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
+import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
+import 'package:shop_flutter_app/redux/cart_page/actions.dart';
 
 import '../state.dart';
 
-// class ChangeTabList
-//     extends CallableThunkActionWithExtraArgument<GlobalState, WorkerProvider> {
-//   final CartProduct item;
+class IncreaseNumberOfProducts
+    extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+  final int index;
 
-//   ChangeTabList(this.item);
+  IncreaseNumberOfProducts(this.index);
 
-//   @override
-//   call(Store<GlobalState> store, extraArgument) {
-//     throw UnimplementedError();
-//   }
+  @override
+  call(Store<GlobalState> store, Dependencies extraArgument) {
+    final items = store.state.cartPage.items.toList();
+    final item = items[index];
+    log(item.amount.toString());
+    final newItem = item.copyWith(amount: item.amount + 1);
+    log(newItem.amount.toString());
+    items[index] = newItem;
+    store.dispatch(SetCartItemsListAction(items));
+  }
+
+}
+
+class DecreaseNumberOfProducts
+    extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+  final int index;
+
+  DecreaseNumberOfProducts(this.index);
+
+  @override
+  call(Store<GlobalState> store, Dependencies extraArgument) {
+    final items = store.state.cartPage.items.toList();
+    final item = items[index];
+    final newItem = item.copyWith(amount: item.amount - 1);
+    items[index] = newItem;
+    store.dispatch(SetCartItemsListAction(items));
+  }
+}
+
+// class SubmitOrder
+//     extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+//   final
+//   SubmitOrder()
 // }
-
 // class AddToFavoriteThunk
 //     extends CallableThunkActionWithExtraArgument<GlobalState, WorkerProvider> {
 //   final CartProduct item;

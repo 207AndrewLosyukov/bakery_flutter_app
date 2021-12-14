@@ -11,6 +11,8 @@ class AppNavigator {
   openMainPage() => bottomBarKey.currentState?.openMainPage();
   openCartPage() => bottomBarKey.currentState?.openCartPage();
   openProfilePage() => bottomBarKey.currentState?.openProfilePage();
+  
+  openOrder() => bottomBarKey.currentState?.openProfilePage();
 
   openProduct(Product product) {
     navigatorKey.currentState?.push(MaterialPageRoute(
