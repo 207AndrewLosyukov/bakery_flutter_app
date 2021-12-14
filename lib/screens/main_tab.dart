@@ -3,8 +3,8 @@ import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
 
-class MainScreen extends StatefulWidget {
-  const MainScreen({Key? key}) : super(key: key);
+class MainTab extends StatefulWidget {
+  const MainTab({Key? key}) : super(key: key);
   static const List<String> urls = [
     "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg",
     "https://thumbs.dreamstime.com/b/булочки-пекарни-с-маковыми-семененами-и-сезамом-творога-варенье-на-202153719.jpg",
@@ -15,10 +15,10 @@ class MainScreen extends StatefulWidget {
   ];
 
   @override
-  State<MainScreen> createState() => _MainScreenState();
+  State<MainTab> createState() => _MainTabState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainTabState extends State<MainTab> {
   @override
   Widget build(BuildContext context) {
     var testListView = Container(
@@ -29,8 +29,8 @@ class _MainScreenState extends State<MainScreen> {
           width: 20,
         ),
         scrollDirection: Axis.horizontal,
-        itemCount: MainScreen.urls.length,
-        itemBuilder: (context, i) => ProductCard(url: MainScreen.urls[i]),
+        itemCount: MainTab.urls.length,
+        itemBuilder: (context, i) => ProductCard(url: MainTab.urls[i]),
       ),
     );
 
@@ -160,9 +160,9 @@ class _MainScreenState extends State<MainScreen> {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
-          return ProductCard(url: MainScreen.urls[i], showTags: false);
+          return ProductCard(url: MainTab.urls[i], showTags: false);
         },
-        childCount: MainScreen.urls.length,
+        childCount: MainTab.urls.length,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 17,
@@ -178,10 +178,10 @@ class _MainScreenState extends State<MainScreen> {
       delegate: SliverChildBuilderDelegate(
         (context, i) {
           return ProductCard(
-              url: MainScreen.urls[MainScreen.urls.length - i - 1],
+              url: MainTab.urls[MainTab.urls.length - i - 1],
               showTags: false);
         },
-        childCount: MainScreen.urls.length,
+        childCount: MainTab.urls.length,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 17,

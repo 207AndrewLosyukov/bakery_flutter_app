@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
-import 'package:shop_flutter_app/screens/cart.dart';
-import 'package:shop_flutter_app/screens/main.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
-import 'package:shop_flutter_app/screens/profile.dart';
+import 'package:shop_flutter_app/screens/cart_tab.dart';
+import 'package:shop_flutter_app/screens/main_tab.dart';
+import 'package:shop_flutter_app/screens/profile_tab.dart';
 
 void main() async {
   await Dependencies.init();
@@ -65,9 +65,9 @@ class MainBottomNavigationBarState extends State<MainBottomNavigationBar> {
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 200),
         child: <Widget>[
-          const MainScreen(),
-          const CartScreen(),
-          const ProfileScreen(),
+          const MainTab(),
+          const CartTab(),
+          const ProfileTab(),
         ][currentTab],
       ),
       bottomNavigationBar: BottomNavigationBar(
