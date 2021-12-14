@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shop_flutter_app/components/product_card.dart';
 
-class CartScreen extends StatelessWidget {
-  const CartScreen({Key? key}) : super(key: key);
+class CartTab extends StatelessWidget {
+  const CartTab({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
