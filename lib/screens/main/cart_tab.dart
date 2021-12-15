@@ -13,7 +13,7 @@ class CartTab extends StatelessWidget {
       color: Colors.orange[100],
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 0),
+          padding: const EdgeInsets.symmetric(horizontal: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

@@ -54,21 +54,23 @@ class _CartItemListState extends State<CartItemList> {
   @override
   Widget build(BuildContext context) {
     return StoreConnector<GlobalState, CartPageState>(
-        distinct: true,
-        converter: (store) => store.state.cartPage,
-        builder: (context, state) {
-          if (state.items.isEmpty) {
-            return const Text('Корзина пустая!');
-          } else {
-            return SizedBox(
-              child: ListView.builder(
-                  padding: const EdgeInsets.all(0),
-                  itemCount: state.items.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _getItem(index, state.items);
-                  }),
-            );
-          }
-        });
+      distinct: true,
+      converter: (store) => store.state.cartPage,
+      builder: (context, state) {
+        if (state.items.isEmpty) {
+          return const Text('Корзина пустая!');
+        } else {
+          return SizedBox(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(0),
+              itemCount: state.items.length,
+              itemBuilder: (BuildContext context, int index) {
+                return _getItem(index, state.items);
+              },
+            ),
+          );
+        }
+      },
+    );
   }
 }

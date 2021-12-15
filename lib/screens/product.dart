@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
+import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -50,12 +51,13 @@ class _ProductScreenState extends State<ProductScreen> {
       () => {
         countOfAdded--,
         textOnFirstButton = "Товаров в корзине $countOfAdded",
-        if (countOfAdded == 0) {
-          isExistAddButton = false,
-          isExistRemoveButton = false,
-          isExistSecondButton = false,
-          textOnFirstButton = "Добавить в корзину",
-        }
+        if (countOfAdded == 0)
+          {
+            isExistAddButton = false,
+            isExistRemoveButton = false,
+            isExistSecondButton = false,
+            textOnFirstButton = "Добавить в корзину",
+          }
       },
     );
   }
@@ -187,7 +189,9 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 child: TextButton(
                   // переход в корзину
-                  onPressed: () {},
+                  onPressed: () {
+                    Dependencies.instance.navigator.openCartPage();
+                  },
                   child: const Text("Перейти в корзину"),
                 ),
               ),
@@ -216,7 +220,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     padding: const EdgeInsets.only(bottom: 20),
                     child: SizedBox(
                       height: 200,
-                      child: ProductCard(url: widget.product.imageUrl),
+                      child: ProductCard(product: widget.product),
                     ),
                   ),
                   Text(

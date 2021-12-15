@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 class ProductCard extends StatelessWidget {
-  
-  final String? url;
+
 
   final bool showTags;
 
-  final Product? product;
+  final Product product;
 
   const ProductCard(
-      {Key? key, required this.url, this.product, this.showTags = true})
+      {Key? key, required this.product, this.showTags = true})
       : super(key: key);
 
   @override
@@ -21,7 +20,7 @@ class ProductCard extends StatelessWidget {
         decoration: ShapeDecoration(
           image: DecorationImage(
             image: NetworkImage(
-              url ?? "",
+              product.imageUrl ?? "",
             ),
             fit: BoxFit.cover,
           ),

@@ -24,7 +24,6 @@ class IncreaseNumberOfProducts
     items[index] = newItem;
     store.dispatch(SetCartItemsListAction(items));
   }
-
 }
 
 class DecreaseNumberOfProducts
