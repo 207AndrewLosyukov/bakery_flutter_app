@@ -23,7 +23,7 @@ class MyStoreBuilder {
 
 GlobalState _globalReducer(GlobalState state, action) => GlobalState(
     cartPage: cartPageReducer(state.cartPage, action),
-    mainPage: mainPageReducer(state.mainPage, action)
+    mainPage: mainPageReducer(state.mainPage, action)     
     // mainPage: mainPageReducer(state.mainPage, action),
     );
 

@@ -27,7 +27,7 @@ class MainScreenState extends State<MainScreen> {
       //   title: const Text('TabBar Widget'),
       // ),
       body: AnimatedSwitcher(
-        duration: Duration(milliseconds: 200),
+        duration: const Duration(milliseconds: 200),
         child: <Widget>[
           const MainTab(),
           const CartTab(),

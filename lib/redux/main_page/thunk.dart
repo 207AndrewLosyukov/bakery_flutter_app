@@ -1,29 +1,28 @@
-import 'dart:html';
-
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
-import 'package:shop_flutter_app/models/cart_product.dart';
+import 'package:shop_flutter_app/dependencies.dart';
 
 import '../state.dart';
+import 'actions.dart';
 
-// class IncreaseNumberOfProducts
-//     extends CallableThunkActionWithExtraArgument<GlobalState> {
-//   final CartProduct item;
+class DownloadList
+    extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+  DownloadList();
 
-//   IncreaseNumberOfProducts(this.item);
-
-//   @override
-//   call(Store<GlobalState> store, extraArgument) {
-//     throw UnimplementedError();
-//   }
-// }
+  @override
+  call(Store<GlobalState> store, extraArgument) async {
+    var items = await Dependencies.instance.productsApi.getProducts();
+    store.dispatch(SetDownloadListAction(items));
+    store.dispatch(SetIsLoadedAction(true));
+  }
+}
 
 // class AddToFavoriteThunk
 //     extends CallableThunkActionWithExtraArgument<GlobalState, WorkerProvider> {
 //   final CartProduct item;
-//
+
 //   AddToFavoriteThunk(this.item);
-//
+
 //   @override
 //   call(Store<GlobalState> store, WorkerProvider extraArgument) {
 //     final feedWorker = extraArgument.feedWorker;
@@ -36,7 +35,7 @@ import '../state.dart';
 //         SetFeedItemsAction(items: items, favoriteItems: favoriteItems));
 //   }
 // }
-//
+
 // class RemoveFromFavoritesThunk
 //     extends CallableThunkActionWithExtraArgument<GlobalState, WorkerProvider> {
 //   final FeedItem item;

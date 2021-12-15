@@ -1,7 +1,14 @@
 import 'package:shop_flutter_app/models/cart_product.dart';
+import 'package:shop_flutter_app/models/product.dart';
 
-class OpenTabWithCartItemsListAction {
-  final List<CartProduct> items;
+class SetDownloadListAction {
+  final List<Product> items;
 
-  OpenTabWithCartItemsListAction(this.items);
+  SetDownloadListAction(this.items);
+}
+
+class SetIsLoadedAction {
+  bool isLoaded;
+
+  SetIsLoadedAction(this.isLoaded);
 }
