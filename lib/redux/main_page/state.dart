@@ -1,24 +1,25 @@
-import 'package:flutter/widgets.dart';
-import 'package:shop_flutter_app/components/cart/cart_fake_data.dart';
-import 'package:shop_flutter_app/components/product_card.dart';
-import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 class MainPageState {
-  static MainPageState initState = MainPageState(
+  static const initState = MainPageState(
     items: [],
+    isLoaded: false,
   );
 
-  final List<CartProduct> items;
+  final bool isLoaded;
+  final List<Product> items;
 
   const MainPageState({
+    required this.isLoaded,
     required this.items,
   });
 
   MainPageState copyWith({
-    List<CartProduct>? items,
+    List<Product>? items,
+    bool? isLoaded,
   }) =>
       MainPageState(
         items: items ?? this.items,
+        isLoaded: isLoaded ?? this.isLoaded,
       );
 }
