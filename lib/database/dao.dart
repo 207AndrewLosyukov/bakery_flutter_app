@@ -29,7 +29,7 @@ class DatabaseApi extends CartProductDao {
 
   @override
   void putCartProduct(CartProduct cartProduct) {
-    database.put(cartProduct.product.id, HiveCartProduct.fromHiveProduct(cartProduct));
+      database.put(cartProduct.product.id, HiveCartProduct.fromHiveProduct(cartProduct));
   }
 
   @override

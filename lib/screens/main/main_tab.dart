@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
-import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/main_page/state.dart';
 import 'package:shop_flutter_app/redux/main_page/thunk.dart';
 import 'package:shop_flutter_app/redux/state.dart';
@@ -175,7 +174,7 @@ class _MainTabState extends State<MainTab> {
             child: ProductCard(product: state.items[i], showTags: false),
             // когда будет готова апишка передать сюда текущий продукт
             onTap: () => Dependencies.instance.navigator
-                .openProduct(Product.testProduct)(),
+                .openProduct(state.items[state.items.length - i - 1])(),
           );
         },
         childCount: state.items.length,
@@ -199,7 +198,7 @@ class _MainTabState extends State<MainTab> {
                 showTags: false),
             // когда будет готова апишка передать сюда текущий продукт
             onTap: () => Dependencies.instance.navigator
-                .openProduct(Product.testProduct)(),
+                .openProduct(state.items[state.items.length - i - 1]),
           );
         },
         childCount: state.items.length,
