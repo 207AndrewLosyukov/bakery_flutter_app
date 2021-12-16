@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/cart/cart_item.dart';
-import 'package:shop_flutter_app/components/cart/cart_items_list.dart';
 import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 
 import '../dependencies.dart';
