@@ -67,14 +67,16 @@ class DecreaseNumberOfProducts
     final items = store.state.cartPage.items.toList();
     final item = extraArgument.cartProductDao.getCartProductById(id);
     extraArgument.cartProductDao.deleteCartProductById(id);
-    final newItem = item!.copyWith(amount: item.amount - 1);
-    extraArgument.cartProductDao.putCartProduct(newItem);
-    store.dispatch(SetCartItemsListAction(items));
-    items[_getCartProductIndexById(newItem.product.id, items)!] = newItem;
-    if (item.amount == 1) {
-      store.dispatch(DeleteProduct(id));
-    } else {
+    if (item != null) {
+      final newItem = item.copyWith(amount: item.amount - 1);
+      extraArgument.cartProductDao.putCartProduct(newItem);
       store.dispatch(SetCartItemsListAction(items));
+      items[_getCartProductIndexById(newItem.product.id, items)!] = newItem;
+      if (item.amount <= 1) {
+        store.dispatch(DeleteProduct(id));
+      } else {
+        store.dispatch(SetCartItemsListAction(items));
+      }
     }
   }
 }
