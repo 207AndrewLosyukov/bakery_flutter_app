@@ -188,7 +188,7 @@ class _MainTabState extends State<MainTab> {
             child: ProductCard(product: state.items[i], showTags: false),
             // когда будет готова апишка передать сюда текущий продукт
             onTap: () => Dependencies.instance.navigator
-                .openProduct(Product.testProduct)(),
+                .openProduct(state.items[i])(),
           );
         },
         childCount: state.items.length,
@@ -212,7 +212,7 @@ class _MainTabState extends State<MainTab> {
                 showTags: false),
             // когда будет готова апишка передать сюда текущий продукт
             onTap: () => Dependencies.instance.navigator
-                .openProduct(Product.testProduct),
+                .openProduct(state.items[state.items.length - i - 1]),
           );
         },
         childCount: state.items.length,

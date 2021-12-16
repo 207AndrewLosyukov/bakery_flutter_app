@@ -19,56 +19,56 @@ class MockProductsApi implements ProductsApi {
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product2',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product3',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product4',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product5',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product6',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product7',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product8',
           title: 'Product',
           price: 100,
           tags: [],
           imageUrl:
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
       Product(
-          id: 'product1',
+          id: 'product9',
           title: 'Product',
           price: 100,
           tags: [],
