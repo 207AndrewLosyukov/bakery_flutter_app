@@ -35,7 +35,7 @@ class HiveProduct {
     for (HiveTag i in tags) {
       newTags.add(i.toTag());
     }
-    return Product(id: id, title: title, price: price, tags: newTags);
+    return Product(id: id, title: title, price: price, tags: newTags, imageUrl: imageUrl, description: description);
   }
 
   static HiveProduct fromProduct(Product product) {
@@ -44,9 +44,12 @@ class HiveProduct {
       newTags.add(HiveTag.fromTag(i));
     }
     return HiveProduct(
-        id: product.id,
-        title: product.title,
-        price: product.price,
-        tags: newTags);
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      tags: newTags,
+      imageUrl: product.imageUrl,
+      description: product.description,
+    );
   }
 }

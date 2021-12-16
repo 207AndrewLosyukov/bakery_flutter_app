@@ -39,7 +39,7 @@ class CartItem extends StatelessWidget {
                     width: 100,
                     child: Image(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(data.product.imageUrl!),
+                      image: NetworkImage(data.product.imageUrl.toString()),
                     ),
                   ),
                 ),
