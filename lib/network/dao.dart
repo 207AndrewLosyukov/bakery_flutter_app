@@ -17,4 +17,14 @@ class NetworkApi extends ProductApiDao {
     }
     return result;
   }
+
+  @override
+  Future<List<Product>> searchProducts(String query) async {
+    final response = await _dio.get(_rootUrl + "search/?query=$query");
+    List<Product> result = [];
+    for (final element in response.data) {
+      result.add(Product.fromJson(element));
+    }
+    return result;
+  }
 }

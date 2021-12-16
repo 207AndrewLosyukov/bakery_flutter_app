@@ -77,4 +77,10 @@ class MockProductsApi implements ProductApiDao {
               "https://image.freepik.com/free-photo/baking-ingredients-on-black-background_88281-3772.jpg"),
     ];
   }
+
+  @override
+  Future<List<Product>> searchProducts(String query) {
+    // TODO: implement searchProducts
+    throw UnimplementedError();
+  }
 }
