@@ -22,6 +22,7 @@ class MainScreenState extends State<MainScreen> {
 
   @override
   Widget build(BuildContext context) {
+    const iconSize = 28.0;
     return Scaffold(
       // appBar: AppBar(
       //   title: const Text('TabBar Widget'),
@@ -39,28 +40,25 @@ class MainScreenState extends State<MainScreen> {
         onTap: (int i) {
           setState(() => currentTab = i);
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(
-            icon: Container(
-              width: 10,
-              height: 10,
-              color: Colors.red,
+            icon: Icon(
+              Icons.home,
+              size: iconSize,
             ),
             label: 'Main',
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              width: 10,
-              height: 10,
-              color: Colors.red,
+            icon: Icon(
+              Icons.shopping_cart,
+              size: iconSize,
             ),
             label: 'Cart',
           ),
           BottomNavigationBarItem(
-            icon: Container(
-              width: 10,
-              height: 10,
-              color: Colors.red,
+            icon: Icon(
+              Icons.person,
+              size: iconSize,
             ),
             label: 'Profile',
           ),
