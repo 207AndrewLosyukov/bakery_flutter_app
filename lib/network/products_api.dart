@@ -1,12 +1,13 @@
 import 'dart:math';
 
+import 'package:shop_flutter_app/data_api/network_dao.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 abstract class ProductsApi {
   Future<List<Product>> getProducts();
 }
 
-class MockProductsApi implements ProductsApi {
+class MockProductsApi implements ProductApiDao {
   @override
   Future<List<Product>> getProducts() async {
     await Future.delayed(Duration(seconds: Random().nextInt(10)));
