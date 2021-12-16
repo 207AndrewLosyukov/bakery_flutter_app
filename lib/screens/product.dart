@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
@@ -193,7 +192,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     ],
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(16, 0, 16, 0),
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                     child: SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
