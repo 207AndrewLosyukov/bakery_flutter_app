@@ -25,145 +25,153 @@ class _MainTabState extends State<MainTab> {
   Widget build(BuildContext context) {
     return StoreConnector<GlobalState, MainPageState>(
       converter: (store) => store.state.mainPage,
-      builder: (context, state) => 
-      state.isLoaded ?
-      DefaultTabController(
-        length: 3,
-        child: Container(
-          color: Colors.orange[100],
-          child: SafeArea(
-            child: CustomScrollView(
-              slivers: <Widget>[
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 100,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 5),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.brown[300],
-                            radius: 45,
-                            child: Image.network(
-                                "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
+      builder: (context, state) => state.isLoaded
+          ? DefaultTabController(
+              length: 3,
+              child: Container(
+                color: Colors.orange[100],
+                child: SafeArea(
+                  child: CustomScrollView(
+                    slivers: <Widget>[
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 100,
+                          child: Row(
                             children: [
-                              const Text(
-                                "Добрый день, Дмитрий!",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 5),
+                                child: CircleAvatar(
+                                  backgroundColor: Colors.brown[300],
+                                  radius: 45,
+                                  child: Image.network(
+                                      "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
                                 ),
                               ),
-                              GestureDetector(
-                                child: const Text(
-                                  "Перейти в профиль",
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const Text(
+                                      "Добрый день, Дмитрий!",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                    GestureDetector(
+                                      child: const Text(
+                                        "Перейти в профиль",
+                                      ),
+                                      onTap: () => Dependencies
+                                          .instance.navigator
+                                          .openAuthPage(),
+                                    ),
+                                  ],
                                 ),
-                                onTap: () => Dependencies.instance.navigator
-                                    .openProfilePage(),
                               ),
                             ],
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Container(
-                    color: Colors.orange[100],
-                    width: double.maxFinite,
-                    height: 50,
-                    child: const Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: 10),
-                        child: Text(
-                          "Рекомендованное:",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
+                      ),
+                      SliverToBoxAdapter(
+                        child: Container(
+                          color: Colors.orange[100],
+                          width: double.maxFinite,
+                          height: 50,
+                          child: const Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10),
+                              child: Text(
+                                "Рекомендованное:",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 150,
-                    child: Container(
-                      color: Colors.orange[100],
-                      child: ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        separatorBuilder: (context, index) => const SizedBox(
-                          width: 20,
+                      SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 150,
+                          child: Container(
+                            color: Colors.orange[100],
+                            child: ListView.separated(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              separatorBuilder: (context, index) =>
+                                  const SizedBox(
+                                width: 20,
+                              ),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: state.items.length,
+                              itemBuilder: (context, i) =>
+                                  ProductCard(product: state.items[i]),
+                            ),
+                          ),
                         ),
-                        scrollDirection: Axis.horizontal,
-                        itemCount: state.items.length,
-                        itemBuilder: (context, i) =>
-                            ProductCard(product: state.items[i]),
                       ),
-                    ),
-                  ),
-                ),
-                const SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: 10,
-                  ),
-                ),
-                SliverAppBar(
-                  toolbarHeight: 0,
-                  pinned: true,
-                  backgroundColor: Colors.brown[300],
-                  bottom: const TabBar(
-                    tabs: [
-                      Tab(text: "Новинка"),
-                      Tab(text: "Скидка"),
-                      Tab(text: "Популярное"),
+                      const SliverToBoxAdapter(
+                        child: SizedBox(
+                          height: 10,
+                        ),
+                      ),
+                      SliverAppBar(
+                        toolbarHeight: 0,
+                        pinned: true,
+                        backgroundColor: Colors.brown[300],
+                        bottom: const TabBar(
+                          tabs: [
+                            Tab(text: "Новинка"),
+                            Tab(text: "Скидка"),
+                            Tab(text: "Популярное"),
+                          ],
+                        ),
+                      ),
+                      SliverPadding(
+                        padding:
+                            const EdgeInsets.only(top: 15, left: 15, right: 15),
+                        sliver: Builder(
+                          builder: (context) {
+                            final tabController =
+                                DefaultTabController.of(context);
+                            if (tabController == null) {
+                              return const SliverToBoxAdapter(
+                                  child: SizedBox());
+                            }
+                            return AnimatedBuilder(
+                              animation: tabController,
+                              builder: (context, i) {
+                                final currentTab = tabController.index;
+                                print(currentTab);
+                                if (currentTab == null) {
+                                  return const SliverToBoxAdapter(
+                                      child: SizedBox());
+                                }
+                                if (currentTab == 0) {
+                                  return buildTab2(state);
+                                } else if (currentTab == 1) {
+                                  return buildTab1(state);
+                                } else {
+                                  return buildTab2(state);
+                                }
+                              },
+                            );
+                          },
+                        ),
+                      ),
                     ],
                   ),
                 ),
-                SliverPadding(
-                  padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                  sliver: Builder(
-                    builder: (context) {
-                      final tabController = DefaultTabController.of(context);
-                      if (tabController == null) {
-                        return const SliverToBoxAdapter(child: SizedBox());
-                      }
-                      return AnimatedBuilder(
-                        animation: tabController,
-                        builder: (context, i) {
-                          final currentTab = tabController.index;
-                          print(currentTab);
-                          if (currentTab == null) {
-                            return const SliverToBoxAdapter(child: SizedBox());
-                          }
-                          if (currentTab == 0) {
-                            return buildTab2(state);
-                          } else if (currentTab == 1) {
-                            return buildTab1(state);
-                          } else {
-                            return buildTab2(state);
-                          }
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ): const Center(child: CircularProgressIndicator()),
+              ),
+            )
+          : const Center(child: CircularProgressIndicator()),
     );
   }
 

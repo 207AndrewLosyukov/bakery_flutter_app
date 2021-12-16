@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:ffi';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
 
@@ -32,12 +31,8 @@ class _OrderTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
-
           errorText: error,
           border: const OutlineInputBorder(),
-          // suffixIcon: Icon(
-          //   Icons.error,
-          // ),
         ),
         validator: (String? value) => validator(value),
       ),
