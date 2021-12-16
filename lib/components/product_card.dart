@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 class ProductCard extends StatelessWidget {
+  static Key createkey(Product product) => ObjectKey(product);
   final void Function()? onTap;
 
   final bool showTags;
 
   final Product product;
 
-  const ProductCard(
-      {Key? key, required this.product, this.showTags = true, this.onTap})
-      : super(key: key);
+  ProductCard({required this.product, this.showTags = true, this.onTap})
+      : super(key: createkey(product));
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +20,9 @@ class ProductCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: ShapeDecoration(
-            image: DecorationImage(
-              image: NetworkImage(
+            image: product.imageUrl==null?null:DecorationImage(
+              image: NetworkImage
+              (
                 product.imageUrl ?? "",
               ),
               fit: BoxFit.cover,

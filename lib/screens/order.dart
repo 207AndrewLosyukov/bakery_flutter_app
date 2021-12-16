@@ -31,12 +31,8 @@ class _OrderTextField extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
-
           errorText: error,
           border: const OutlineInputBorder(),
-          // suffixIcon: Icon(
-          //   Icons.error,
-          // ),
         ),
         validator: (String? value) => validator(value),
       ),
