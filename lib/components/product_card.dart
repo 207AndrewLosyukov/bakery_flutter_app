@@ -41,11 +41,11 @@ class ProductCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(
+                Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Text(
-                    "Красивое\nописание товара",
-                    style: TextStyle(
+                    product.title,
+                    style: const TextStyle(
                       color: Colors.white,
                       fontSize: 14,
                       fontFamily: 'Railway',

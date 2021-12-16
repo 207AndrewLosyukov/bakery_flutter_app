@@ -16,7 +16,7 @@ class Search
   @override
   call(Store<GlobalState> store, Dependencies extraArgument) async {
     store.dispatch(SetLoadingAction());
-    var res = await extraArgument.productsApi.getProducts();
+    var res = await extraArgument.productsApi.searchProducts(query);
     store.dispatch(SetSearchResultsAction(res));
   }
 }
