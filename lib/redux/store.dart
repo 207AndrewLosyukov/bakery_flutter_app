@@ -1,6 +1,7 @@
 import 'package:redux/redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/redux/main_page/reducer.dart';
+import 'package:shop_flutter_app/redux/search_page/reducer.dart';
 import 'package:shop_flutter_app/redux/state.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
@@ -22,9 +23,10 @@ class MyStoreBuilder {
 }
 
 GlobalState _globalReducer(GlobalState state, action) => GlobalState(
-    cartPage: cartPageReducer(state.cartPage, action),
-    mainPage: mainPageReducer(state.mainPage, action)     
-    // mainPage: mainPageReducer(state.mainPage, action),
+      cartPage: cartPageReducer(state.cartPage, action),
+      mainPage: mainPageReducer(state.mainPage, action),
+      searchPage: searchPageReducer(state.searchPage, action),
+      // mainPage: mainPageReducer(state.mainPage, action),
     );
 
 // final mainPageReducer = combineReducers<MainPageState>([
