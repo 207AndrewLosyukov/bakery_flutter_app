@@ -106,10 +106,10 @@ class ClearCart
   call(Store<GlobalState> store, Dependencies extraArgument) {
     final items = store.state.cartPage.items.toList();
     items.clear();
-    store.dispatch(SetCartItemsListAction(items));
     for (final i in extraArgument.cartProductDao.getCartProductList()) {
       extraArgument.cartProductDao.deleteCartProductById(i.product.id);
     }
+    store.dispatch(SetCartItemsListAction(items));
   }
 }
 
