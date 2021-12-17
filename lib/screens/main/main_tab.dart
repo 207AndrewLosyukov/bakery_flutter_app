@@ -36,47 +36,67 @@ class _MainTabState extends State<MainTab> {
               child: CustomScrollView(
                 slivers: <Widget>[
                   SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(
-                            left: 12,
-                            top: 6,
-                            bottom: 6,
-                          ),
-                          child: CircleAvatar(
-                            backgroundColor: Colors.brown[300],
-                            radius: 36,
-                            child: Image.network(
-                                "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "Добрый день, Дмитрий!",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  child: const Text(
-                                    "Перейти в профиль",
-                                  ),
-                                  onTap: () => Dependencies.instance.navigator
-                                      .openAuthPage(),
-                                ),
-                              ],
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 12,
+                              top: 6,
+                              bottom: 6,
+                            ),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.brown[300],
+                              radius: 36,
+                              child: Image.network(
+                                  "https://flomaster.club/uploads/posts/2021-11/1635833030_1-flomaster-club-p-narisovannii-yeltsin-krasivii-risunok-1.png"),
                             ),
                           ),
-                        ),
-                      ],
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Добрый день, Дмитрий!",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    child: const Text(
+                                      "Перейти в профиль",
+                                    ),
+                                    onTap: () => Dependencies.instance.navigator
+                                        .openAuthPage(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          IconButton(
+                            iconSize: 24,
+                            onPressed: () =>
+                                Dependencies.instance.navigator.openSearch(),
+                            icon: const Icon(Icons.search),
+                            // label: const Text('Поиск'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                        ],
+                      ),
                     ),
                   ),
                   const SliverToBoxAdapter(
@@ -110,13 +130,6 @@ class _MainTabState extends State<MainTab> {
                               .openProduct(state.items[i]),
                         ),
                       ),
-                    ),
-                  ),
-                  const SliverToBoxAdapter(child: SizedBox(height: 10)),
-                  SliverToBoxAdapter(
-                    child: GestureDetector(
-                      onTap: () => Dependencies.instance.navigator.openSearch(),
-                      child: const Text("Search"),
                     ),
                   ),
                   const SliverToBoxAdapter(
