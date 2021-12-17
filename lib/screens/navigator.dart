@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_flutter_app/components/error.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/cart_page/thunk.dart';
