@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_redux/flutter_redux.dart';
+import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/models/user.dart';
+import 'package:shop_flutter_app/redux/auth_page/actions.dart';
+import 'package:shop_flutter_app/redux/auth_page/state.dart';
+import 'package:shop_flutter_app/redux/auth_page/thunk.dart';
+import 'package:shop_flutter_app/redux/state.dart';
+
 // import 'package:firebase_core/firebase_core.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
@@ -37,7 +45,7 @@ class _OrderTextField extends StatelessWidget {
 }
 
 class AuthScreen extends StatefulWidget {
-  AuthScreen({Key? key}) : super(key: key);
+  const AuthScreen({Key? key}) : super(key: key);
 
   @override
   _AuthScreenState createState() => _AuthScreenState();
@@ -70,81 +78,84 @@ class _AuthScreenState extends State<AuthScreen> {
         if (value == null || value.isEmpty) {
           return "Значение не должно быть пустым";
         }
+        if (value != 'trumpyandex1@gmail.com' && value != '12345678') {
+          return "Неправильные данные для входа";
+        }
         return null;
       };
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Form(
-          key: _formKey,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView(
-              children: [
-                if (!doesWantToAuth)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 100.0),
-                    child: Container(
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0),
-                          side: const BorderSide(
-                            width: 1,
-                            color: Colors.black,
+              body: Center(
+                child: Form(
+                  key: _formKey,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListView(
+                      children: [
+                        if (!doesWantToAuth)
+                          Padding(
+                            padding: const EdgeInsets.only(top: 100.0),
+                            child: Container(
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  side: const BorderSide(
+                                    width: 1,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                              child: TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    doesWantToAuth = true;
+                                  });
+                                },
+                                child: const Text("Войти через Google"),
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      child: TextButton(
-                        onPressed: () {
-                          setState(() {
-                            doesWantToAuth = true;
-                          });
-                        },
-                        child: const Text("Войти через Google"),
-                      ),
+                        if (doesWantToAuth)
+                          const Padding(
+                            padding: EdgeInsets.only(top: 20.0),
+                            child: Text(
+                              "Страница входа через Google",
+                              style: TextStyle(fontSize: 22),
+                            ),
+                          ),
+                        if (doesWantToAuth)
+                          _OrderTextField(
+                            controller: emailController,
+                            hintText: 'E-mail',
+                            validator: validator(passController.text),
+                            cancelError: () => cancelError('E-mail'),
+                          ),
+                        if (doesWantToAuth)
+                          _OrderTextField(
+                            controller: passController,
+                            hintText: 'Password',
+                            validator: validator(emailController.text),
+                            cancelError: () => cancelError('Password'),
+                          ),
+                        if (doesWantToAuth)
+                          ElevatedButton(
+                            onPressed: () {
+                              // Validate will return true if the form is valid, or false if
+                              // the form is invalid.
+                              if (_formKey.currentState!.validate()) {
+                                Dependencies.instance.store.dispatch(AddUser(const User("Дмитрий", "trumpyandex1@gmail.com", "")));
+                                Dependencies.instance.navigator.replaceMainPage();
+                              }
+                            },
+                            child: const Text('Submit'),
+                          ),
+                      ],
                     ),
                   ),
-                if (doesWantToAuth)
-                  const Padding(
-                    padding: EdgeInsets.only(top: 20.0),
-                    child: Text(
-                      "Страница входа через Google",
-                      style: TextStyle(fontSize: 22),
-                    ),
-                  ),
-                if (doesWantToAuth)
-                  _OrderTextField(
-                    controller: emailController,
-                    hintText: 'E-mail',
-                    validator: validator('E-mail'),
-                    cancelError: () => cancelError('E-mail'),
-                  ),
-                if (doesWantToAuth)
-                  _OrderTextField(
-                    controller: passController,
-                    hintText: 'Password',
-                    validator: validator('Password'),
-                    cancelError: () => cancelError('Password'),
-                  ),
-                if (doesWantToAuth)
-                  ElevatedButton(
-                    onPressed: () {
-                      // Validate will return true if the form is valid, or false if
-                      // the form is invalid.
-                      if (_formKey.currentState!.validate()) {
-                        // Сюда писать аутентификацию
-                        // auth();
-                      }
-                    },
-                    child: const Text('Submit'),
-                  ),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                ),
+              ),
+            );
   }
 }

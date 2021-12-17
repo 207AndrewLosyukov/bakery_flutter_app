@@ -25,8 +25,14 @@ class AppNavigator {
   }
 
   openAuthPage() => navigatorKey.currentState?.push(MaterialPageRoute(
-        builder: (context) => AuthScreen(),
+        builder: (context) => const AuthScreen(),
       ));
+
+  replaceMainPage() {
+    navigatorKey.currentState?.pushReplacement(MaterialPageRoute(
+      builder: (context) => const MainScreen(),
+    ));
+  }
 
   openProfilePage() => bottomBarKey.currentState?.openProfilePage();
 

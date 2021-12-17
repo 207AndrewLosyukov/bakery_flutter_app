@@ -1,7 +1,11 @@
 import 'package:shop_flutter_app/models/user.dart';
 
-class AddUserAction {
+class SetAddUserAction {
   final User user;
 
-  AddUserAction(this.user);
+  SetAddUserAction(this.user);
+}
+
+class SetRemoveUserAction {
+  SetRemoveUserAction();
 }

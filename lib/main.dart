@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/screens/auth.dart';
 import 'package:shop_flutter_app/screens/main/main_screen.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+   final user = Dependencies.instance .authDao.getCurrentUser();
     return StoreProvider(
       store: Dependencies.instance.store,
       child: MaterialApp(
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
           // is not restarted.
           primarySwatch: Colors.brown,
         ),
-        home: MainScreen(key: AppNavigator.bottomBarKey),
+        home: user==null?AuthScreen():MainScreen(key:AppNavigator.bottomBarKey),
         navigatorKey: AppNavigator.navigatorKey,
       ),
     );

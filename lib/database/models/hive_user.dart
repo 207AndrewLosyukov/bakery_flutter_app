@@ -4,7 +4,7 @@ import 'package:shop_flutter_app/models/user.dart';
 
 part 'hive_user.g.dart';
 
-@HiveType(typeId: 3)
+@HiveType(typeId: 4)
 class HiveUser {
   @HiveField(0)
   final String nickname;
