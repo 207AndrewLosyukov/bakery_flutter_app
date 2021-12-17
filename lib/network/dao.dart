@@ -10,7 +10,12 @@ class NetworkApi extends ProductApiDao {
 
   @override
   Future<List<Product>> getProducts() async {
-    final response = await _dio.get(_rootUrl + "?offset=0&count=1000");
+    late final response;
+    try {
+      response = await _dio.get(_rootUrl + "?offset=0&count=1000");
+    } on DioError catch (e) {
+      Dependencies.instance.navigator.openErrorPage();
+    }
     List<Product> result = [];
     for (final element in response.data) {
       result.add(Product.fromJson(element));
