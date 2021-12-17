@@ -6,9 +6,7 @@ class ProfileTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.orange[100],
-      child: const SafeArea(
-        child: Center(child: Text("Profile"))
-      ),
+      child: const SafeArea(child: Center(child: Text("Profile"))),
     );
   }
 }

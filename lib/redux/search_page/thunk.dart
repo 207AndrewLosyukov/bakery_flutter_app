@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:shop_flutter_app/dependencies.dart';

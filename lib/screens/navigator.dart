@@ -1,10 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/cart_page/thunk.dart';
 import 'package:shop_flutter_app/screens/auth.dart';
-import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 import 'package:shop_flutter_app/screens/main/main_screen.dart';
 import 'package:shop_flutter_app/screens/order.dart';
 import 'package:shop_flutter_app/screens/product.dart';
@@ -25,7 +23,7 @@ class AppNavigator {
   }
 
   openAuthPage() => navigatorKey.currentState?.push(MaterialPageRoute(
-        builder: (context) => AuthScreen(),
+        builder: (context) => const AuthScreen(),
       ));
 
   openProfilePage() => bottomBarKey.currentState?.openProfilePage();
@@ -52,7 +50,7 @@ class AppNavigator {
 
   openSearch() {
     navigatorKey.currentState?.push(MaterialPageRoute(
-      builder: (context) => SearchScreen(),
+      builder: (context) => const SearchScreen(),
     ));
   }
 

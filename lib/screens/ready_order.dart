@@ -9,7 +9,6 @@ class ReadyOrderScreen extends StatefulWidget {
 }
 
 class _ReadyOrderScreenState extends State<ReadyOrderScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final phoneController = TextEditingController();
   final nameController = TextEditingController();
