@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
-import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
@@ -75,30 +74,30 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: <Widget>[
-          SliverAppBar(
-            pinned: true,
-            snap: false,
-            floating: true,
-            expandedHeight: MediaQuery.of(context).size.height / 2,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text(widget.product.title +
-                  '   \$' +
-                  widget.product.price.toString() +
-                  '/шт.'),
-              background: Image(
-                image: NetworkImage(widget.product.imageUrl!),
-                fit: BoxFit.cover,
+      body: Container(
+        color: Colors.orange[100],
+        child: CustomScrollView(
+          slivers: <Widget>[
+            SliverAppBar(
+              pinned: true,
+              snap: false,
+              floating: true,
+              expandedHeight: MediaQuery.of(context).size.height / 2,
+              flexibleSpace: FlexibleSpaceBar(
+                title: Text(widget.product.title +
+                    '   \$' +
+                    widget.product.price.toString() +
+                    '/шт.'),
+                background: Image(
+                  image: NetworkImage(widget.product.imageUrl!),
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          // SliverList(
-          // delegate: SliverChildBuilderDelegate(
-          //   (BuildContext context, int index) {
-          SliverToBoxAdapter(
-            child: Container(
-              color: Colors.orange[100],
+            // SliverList(
+            // delegate: SliverChildBuilderDelegate(
+            //   (BuildContext context, int index) {
+            SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(15),
                 child: SizedBox(
@@ -127,87 +126,85 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
             ),
-          ),
-          //   },
-          //   childCount: 20,
-          // ),
-          // ),
-        ],
+            //   },
+            //   childCount: 20,
+            // ),
+            // ),
+          ],
+        ),
       ),
       bottomNavigationBar: StoreConnector<GlobalState, CartPageState>(
           converter: (store) => store.state.cartPage,
           builder: (context, state) {
-            return SizedBox(
-              height: 120,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            return Container(
+              color: Colors.orange[100],
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(width: 16,),
-                          IconButton(
-                          onPressed: () => {removeFromCart(state.items)},
-                          icon: const CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 30,
-                            child: Icon(
-                              Icons.remove_rounded,
-                              color: Colors.white,
+                          Row(children: [
+                            IconButton(
+                              onPressed: () => removeFromCart(state.items),
+                              icon: const CircleAvatar(
+                                backgroundColor: Colors.black,
+                                radius: 30,
+                                child: Icon(
+                                  Icons.remove_rounded,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                          const SizedBox(width: 16,),
+                            SizedBox(
+                              width: 36,
+                              child: Center(
+                                child: Text(
+                                  _getNumberOfCartProduct(state.items).toString(),
+                                  style: const TextStyle(fontSize: 20),
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () => addToCart(state.items),
+                              icon: const CircleAvatar(
+                                backgroundColor: Colors.black,
+                                radius: 30,
+                                child: Icon(
+                                  Icons.add_rounded,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ]),
                           Text(
-                          _getNumberOfCartProduct(state.items).toString(),
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                          const SizedBox(width: 16,),
-                          IconButton(
-                          onPressed: () => {addToCart(state.items)},
-                          icon: const CircleAvatar(
-                            backgroundColor: Colors.black,
-                            radius: 30,
-                            child: Icon(
-                              Icons.add_rounded,
-                              color: Colors.white,
-                            ),
+                            'Итого: \$' +
+                                (widget.product.price *
+                                        _getNumberOfCartProduct(state.items))
+                                    .toString(),
+                            style: const TextStyle(fontSize: 24),
                           ),
-                        ),
-                        ]
+                        ],
                       ),
-
-                      Padding(
-                        padding: const EdgeInsets.only(right: 16),
-                        child: Text(
-                          'Итого: \$' +
-                              (widget.product.price *
-                                      _getNumberOfCartProduct(state.items))
-                                  .toString(),
-                          style: const TextStyle(fontSize: 24),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            textStyle: const TextStyle(fontSize: 20),
+                            primary: Colors.black,
+                          ),
+                          onPressed: () {
+                            Dependencies.instance.navigator.openCartPage();
+                          },
+                          child: const Text('Перейти в корзину'),
                         ),
-                      ),
+                      )
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          textStyle: const TextStyle(fontSize: 20),
-                          primary: Colors.black,
-                        ),
-                        onPressed: () {
-                          Dependencies.instance.navigator.openCartPage();
-                        },
-                        child: const Text('Перейти в корзину'),
-                      ),
-                    ),
-                  )
-                ],
+                ),
               ),
             );
           }),

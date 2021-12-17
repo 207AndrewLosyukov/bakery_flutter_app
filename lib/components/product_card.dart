@@ -29,7 +29,7 @@ class ProductCard extends StatelessWidget {
             ),
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(32.0),
+              borderRadius: BorderRadius.circular(24.0),
               side: const BorderSide(
                 width: 1,
                 color: Colors.black,
@@ -37,12 +37,13 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Text(
                     product.title,
                     style: const TextStyle(
@@ -53,17 +54,11 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
-                const SizedBox(height: 8),
-                if (showTags)
-                  Wrap(
-                    spacing: 10,
-                    children: const [
-                      // Сюда складывать все тэги
-                      ButtonTag(),
-                      ButtonTag(),
-                    ],
-                  ),
+                // if (showTags)
+                //   Wrap(
+                //     spacing: 8,
+                //     children: product.tags.map((v) => ButtonTag(v.title)).toList(),
+                //   ),
               ],
             ),
           ),
@@ -74,14 +69,14 @@ class ProductCard extends StatelessWidget {
 }
 
 class ButtonTag extends StatelessWidget {
-  const ButtonTag({Key? key}) : super(key: key);
+  String text;
+
+  ButtonTag(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Chip(
-      label: Text(
-        "Some tag",
-      ),
+    return Chip(
+      label: Text(text),
     );
   }
 }
