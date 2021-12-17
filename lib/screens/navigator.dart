@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/cart_page/thunk.dart';
+import 'package:shop_flutter_app/screens/auth.dart';
 import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 import 'package:shop_flutter_app/screens/main/main_screen.dart';
 import 'package:shop_flutter_app/screens/order.dart';
 import 'package:shop_flutter_app/screens/product.dart';
 import 'package:shop_flutter_app/screens/ready_order.dart';
+import 'package:shop_flutter_app/screens/search.dart';
 
 class AppNavigator {
   static final navigatorKey = GlobalKey<NavigatorState>();
@@ -21,6 +23,10 @@ class AppNavigator {
     //   builder: (context) => const CartTab(),
     // ));
   }
+
+  openAuthPage() => navigatorKey.currentState?.push(MaterialPageRoute(
+        builder: (context) => AuthScreen(),
+      ));
 
   openProfilePage() => bottomBarKey.currentState?.openProfilePage();
 
@@ -41,6 +47,12 @@ class AppNavigator {
   openProduct(Product product) {
     navigatorKey.currentState?.push(MaterialPageRoute(
       builder: (context) => ProductScreen(product: product),
+    ));
+  }
+
+  openSearch() {
+    navigatorKey.currentState?.push(MaterialPageRoute(
+      builder: (context) => SearchScreen(),
     ));
   }
 

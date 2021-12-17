@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
-import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/cart_page/state.dart';
 import 'package:shop_flutter_app/redux/cart_page/thunk.dart';
 import 'package:shop_flutter_app/redux/state.dart';
@@ -20,12 +19,12 @@ class CartItemList extends StatefulWidget {
 }
 
 class _CartItemListState extends State<CartItemList> {
-  void _increaseCounter(int index) {
-    Dependencies.instance.store.dispatch(IncreaseNumberOfProducts(index));
+  void _increaseCounter(String id) {
+    Dependencies.instance.store.dispatch(IncreaseNumberOfProducts(id));
   }
 
-  void _decreaseCounter(int index) {
-    Dependencies.instance.store.dispatch(DecreaseNumberOfProducts(index));
+  void _decreaseCounter(String id) {
+    Dependencies.instance.store.dispatch(DecreaseNumberOfProducts(id));
   }
 
   void _removeItem(int index) {
@@ -38,7 +37,7 @@ class _CartItemListState extends State<CartItemList> {
     return CartItem(
       onAmountDecreased: _decreaseCounter,
       onAmountIncreased: _increaseCounter,
-      index: index,
+      id: items[index].product.id,
       data: items[index],
     );
   }

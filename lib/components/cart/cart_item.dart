@@ -1,6 +1,3 @@
-import 'dart:developer';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
@@ -8,16 +5,16 @@ import 'package:shop_flutter_app/models/product.dart';
 /// This is the stateless widget that the main application instantiates.
 class CartItem extends StatelessWidget {
   final CartProduct data;
-  final void Function(int) onAmountIncreased;
-  final void Function(int) onAmountDecreased;
-  final int index;
+  final void Function(String) onAmountIncreased;
+  final void Function(String) onAmountDecreased;
+  final String id;
 
   const CartItem({
     Key? key,
     required this.data,
     required this.onAmountIncreased,
     required this.onAmountDecreased,
-    required this.index,
+    required this.id,
   }) : super(
           key: key,
         );
@@ -42,7 +39,7 @@ class CartItem extends StatelessWidget {
                     width: 100,
                     child: Image(
                       fit: BoxFit.fitHeight,
-                      image: NetworkImage(data.product.imageUrl!),
+                      image: NetworkImage(data.product.imageUrl.toString()),
                     ),
                   ),
                 ),
@@ -87,14 +84,14 @@ class CartItem extends StatelessWidget {
                                     children: [
                                       IconButton(
                                           onPressed: () =>
-                                              onAmountIncreased(index),
+                                              onAmountIncreased(id),
                                           icon: const Icon(Icons.add_rounded)),
                                       Text(
                                         data.amount.toString(),
                                       ),
                                       IconButton(
                                           onPressed: () =>
-                                              onAmountDecreased(index),
+                                              onAmountDecreased(id),
                                           icon:
                                               const Icon(Icons.remove_rounded)),
                                     ]),
