@@ -61,3 +61,8 @@ jobs:
         with:
           name: release-${{ matrix.build }}
           path: build/app/outputs/apk/release/app-release.apk
+      - uses: ncipollo/release-action@v1
+        if: ${{ matrix.target == 'android' }}
+        with:
+          artifacts: "build/app/outputs/apk/release/app-release.apk"
+          token: ${{ secrets.GITHUB_TOKEN }}
