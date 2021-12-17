@@ -14,7 +14,6 @@ class AddUser
 
   @override
   call(Store<GlobalState> store, Dependencies extraArgument) {
-    print(user.email);
       extraArgument.authDao.putUser(user);
       store.dispatch(SetAddUserAction(user));
   }
