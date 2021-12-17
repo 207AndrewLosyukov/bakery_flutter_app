@@ -5,11 +5,17 @@ import 'actions.dart';
 
 final Reducer<AuthPageState> authPageReducer = combineReducers<AuthPageState>(
   [
-    TypedReducer<AuthPageState, AddUserAction>(
+    TypedReducer<AuthPageState, SetAddUserAction>(
       _setAddUserAction,
+    ),
+    TypedReducer<AuthPageState, SetRemoveUserAction>(
+      _setRemoveUserAction,
     ),
   ],
 );
 
-AuthPageState _setAddUserAction(AuthPageState state, AddUserAction action) =>
+AuthPageState _setAddUserAction(AuthPageState state, SetAddUserAction action) =>
     state.copyWith(user: action.user);
+
+AuthPageState _setRemoveUserAction(AuthPageState state, SetRemoveUserAction action) =>
+    state.copyWith(user: null);
