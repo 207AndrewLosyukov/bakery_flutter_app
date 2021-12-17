@@ -4,7 +4,7 @@ import 'package:redux/redux.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 import 'package:shop_flutter_app/components/cart/cart_item.dart';
 import 'package:shop_flutter_app/components/cart/cart_items_list.dart';
-import 'package:shop_flutter_app/database/dao.dart';
+import 'package:shop_flutter_app/database/cart_dao.dart';
 import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/models/product.dart';
