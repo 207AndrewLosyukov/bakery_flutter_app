@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:shop_flutter_app/dependencies.dart';
-import 'package:shop_flutter_app/screens/navigator.dart';
 
 import 'package:flutter/material.dart';
-import 'package:shop_flutter_app/screens/ready_order.dart';
 
 class _OrderTextField extends StatelessWidget {
   final String? hintText;

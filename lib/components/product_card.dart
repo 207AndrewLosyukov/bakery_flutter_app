@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shop_flutter_app/models/product.dart';
 
 class ProductCard extends StatelessWidget {
-  static Key createkey(Product product) => ObjectKey(product);
+  static Key createKey(Product product) => ObjectKey(product);
   final void Function()? onTap;
 
   final bool showTags;
@@ -10,7 +10,7 @@ class ProductCard extends StatelessWidget {
   final Product product;
 
   ProductCard({required this.product, this.showTags = true, this.onTap})
-      : super(key: createkey(product));
+      : super(key: createKey(product));
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,7 @@ class ProductCard extends StatelessWidget {
 class ButtonTag extends StatelessWidget {
   final String text;
 
-  ButtonTag(this.text, {Key? key}) : super(key: key);
+  const ButtonTag(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

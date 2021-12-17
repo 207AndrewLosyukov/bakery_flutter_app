@@ -4,7 +4,6 @@ import 'package:shop_flutter_app/components/cart/cart_items_list.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
 import 'package:shop_flutter_app/redux/cart_page/state.dart';
 import 'package:shop_flutter_app/redux/state.dart';
-import 'package:shop_flutter_app/screens/order.dart';
 
 import '../../dependencies.dart';
 

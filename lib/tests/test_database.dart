@@ -1,23 +1,9 @@
-/// Flutter code sample for Card
-
-// This sample shows creation of a [Card] widget that shows album information
-// and two actions.
-
 import 'dart:developer';
 
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_redux/flutter_redux.dart';
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:shop_flutter_app/components/cart/cart_item.dart';
 import 'package:shop_flutter_app/database/models/hive_cart_product.dart';
 import 'package:shop_flutter_app/database/models/hive_product.dart';
 import 'package:shop_flutter_app/database/models/hive_tag.dart';
 import 'package:shop_flutter_app/database/init_hive.dart';
-import 'package:shop_flutter_app/models/cart_product.dart';
-import 'package:shop_flutter_app/models/product.dart';
-import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 
 import '../dependencies.dart';
 
