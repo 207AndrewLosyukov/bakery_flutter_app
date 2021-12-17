@@ -69,7 +69,7 @@ class ProductCard extends StatelessWidget {
 }
 
 class ButtonTag extends StatelessWidget {
-  String text;
+  final String text;
 
   ButtonTag(this.text, {Key? key}) : super(key: key);
 
