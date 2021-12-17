@@ -1,9 +1,7 @@
 name: Flutter CI
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  pull_request:
 
 jobs:
   analyze:
