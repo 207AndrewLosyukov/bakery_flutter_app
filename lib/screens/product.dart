@@ -142,16 +142,6 @@ class _ProductScreenState extends State<ProductScreen> {
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(
-                              width: 36,
-                              child: Center(
-                                child: Text(
-                                  _getNumberOfCartProduct(state.items)
-                                      .toString(),
-                                  style: const TextStyle(fontSize: 20),
-                                ),
-                              ),
-                            ),
                           ),
                           IconButton(
                             onPressed: () => addToCart(state.items),
