@@ -30,12 +30,31 @@ class ProductCard extends StatelessWidget {
                   ),
             color: Colors.white,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24.0),
-              side: const BorderSide(
-                width: 1,
-                color: Colors.black,
-              ),
+              borderRadius: BorderRadius.circular(16.0),
             ),
+            shadows: [
+              // 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+              //     0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+              //     0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+              BoxShadow(
+                offset: const Offset(0, 2),
+                blurRadius: 4,
+                spreadRadius: -1,
+                color: Colors.black.withOpacity(0.2),
+              ),
+              BoxShadow(
+                offset: const Offset(0, 4),
+                blurRadius: 5,
+                spreadRadius: 0,
+                color: Colors.black.withOpacity(0.14),
+              ),
+              BoxShadow(
+                offset: const Offset(0, 1),
+                blurRadius: 10,
+                spreadRadius: 0,
+                color: Colors.black.withOpacity(0.12),
+              ),
+            ],
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),

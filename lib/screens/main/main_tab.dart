@@ -90,15 +90,12 @@ class _MainTabState extends State<MainTab> {
                   ),
                   const SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 8,
-                        horizontal: 12,
-                      ),
+                      padding: EdgeInsets.fromLTRB(12, 16, 12, 0),
                       child: Text(
-                        "Рекомендованное:",
+                        "Рекомендованное",
                         textAlign: TextAlign.start,
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 24,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -106,9 +103,9 @@ class _MainTabState extends State<MainTab> {
                   ),
                   SliverToBoxAdapter(
                     child: SizedBox(
-                      height: 150,
+                      height: 200,
                       child: ListView.separated(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        padding: const EdgeInsets.all(16),
                         separatorBuilder: (context, index) =>
                             const SizedBox(width: 16),
                         scrollDirection: Axis.horizontal,
@@ -121,25 +118,44 @@ class _MainTabState extends State<MainTab> {
                       ),
                     ),
                   ),
-                  const SliverToBoxAdapter(
-                    child: SizedBox(
-                      height: 8,
-                    ),
-                  ),
                   SliverAppBar(
-                    toolbarHeight: 0,
+                    toolbarHeight: 16,
                     pinned: true,
-                    backgroundColor: Colors.brown[300],
-                    bottom: const TabBar(
-                      tabs: [
+                    backgroundColor: Colors.orange[100],
+                    bottom: TabBar(
+                      overlayColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.transparent),
+                      indicatorColor: Colors.transparent,
+                      labelColor: Theme.of(context).shadowColor,
+                      unselectedLabelColor: Theme.of(context).primaryColor,
+                      physics: const BouncingScrollPhysics(),
+                      isScrollable: true,
+                      tabs: const [
                         Tab(text: "Новинка"),
                         Tab(text: "Скидка"),
                         Tab(text: "Популярное"),
                       ],
+                      labelStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                      unselectedLabelStyle: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                      enableFeedback: true,
+                      indicator: BoxDecoration(
+                          borderRadius:
+                              BorderRadius.circular(16), // Creates border
+                          color: Colors.black.withOpacity(0.1)),
+                      padding: const EdgeInsets.all(8),
+                      // indicatorSize: TabBarIndicatorSize.tab,
+                      // indicatorWeight: 0,
+                      // indicatorColor: Colors.brown,
                     ),
                   ),
                   SliverPadding(
-                    padding: const EdgeInsets.all(12),
+                    padding: const EdgeInsets.fromLTRB(12, 8, 12, 12),
                     sliver: Builder(
                       builder: (context) {
                         final tabController = DefaultTabController.of(context);
