@@ -70,7 +70,7 @@ class _MainTabState extends State<MainTab> {
                                     "Перейти в профиль",
                                   ),
                                   onTap: () => Dependencies.instance.navigator
-                                      .openProfilePage(),
+                                      .openAuthPage(),
                                 ),
                               ],
                             ),
