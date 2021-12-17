@@ -4,7 +4,6 @@ import 'package:shop_flutter_app/database/models/hive_cart_product.dart';
 import 'package:shop_flutter_app/models/cart_product.dart';
 
 class DatabaseApi extends CartProductDao {
-
   final Box<HiveCartProduct> database;
 
   DatabaseApi({required this.database});
@@ -29,7 +28,8 @@ class DatabaseApi extends CartProductDao {
 
   @override
   void putCartProduct(CartProduct cartProduct) {
-      database.put(cartProduct.product.id, HiveCartProduct.fromHiveProduct(cartProduct));
+    database.put(
+        cartProduct.product.id, HiveCartProduct.fromHiveProduct(cartProduct));
   }
 
   @override

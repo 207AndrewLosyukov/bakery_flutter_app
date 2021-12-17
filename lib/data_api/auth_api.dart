@@ -1,5 +1,3 @@
-import 'package:shop_flutter_app/models/cart_product.dart';
-import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/models/user.dart';
 
 abstract class AuthApi {
