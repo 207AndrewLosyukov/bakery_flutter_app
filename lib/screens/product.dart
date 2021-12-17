@@ -94,69 +94,52 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
               ),
             ),
-            // SliverList(
-            // delegate: SliverChildBuilderDelegate(
-            //   (BuildContext context, int index) {
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(15),
-                child: SizedBox(
-                  height: 500,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      // Text(
-                      //   '\$ ' + widget.product.price.toString(),
-                      //   style: const TextStyle(
-                      //     fontSize: 22,
-                      //     fontWeight: FontWeight.bold,
-                      //   ),
-                      // ),
-                      Text(
-                        (widget.product.description ?? ""),
-                        textAlign: TextAlign.justify,
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.normal,
-                        ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      (widget.product.description ?? ""),
+                      textAlign: TextAlign.justify,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.normal,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            //   },
-            //   childCount: 20,
-            // ),
-            // ),
           ],
         ),
       ),
       bottomNavigationBar: StoreConnector<GlobalState, CartPageState>(
-          converter: (store) => store.state.cartPage,
-          builder: (context, state) {
-            return Container(
-              color: Colors.orange[100],
-              child: SafeArea(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(children: [
-                            IconButton(
-                              onPressed: () => removeFromCart(state.items),
-                              icon: const CircleAvatar(
-                                backgroundColor: Colors.black,
-                                radius: 30,
-                                child: Icon(
-                                  Icons.remove_rounded,
-                                  color: Colors.white,
-                                ),
+        converter: (store) => store.state.cartPage,
+        builder: (context, state) {
+          return Container(
+            color: Colors.orange[100],
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(children: [
+                          IconButton(
+                            onPressed: () => removeFromCart(state.items),
+                            icon: const CircleAvatar(
+                              backgroundColor: Colors.black,
+                              radius: 30,
+                              child: Icon(
+                                Icons.remove_rounded,
+                                color: Colors.white,
                               ),
                             ),
                             SizedBox(
@@ -169,185 +152,48 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                               ),
                             ),
-                            IconButton(
-                              onPressed: () => addToCart(state.items),
-                              icon: const CircleAvatar(
-                                backgroundColor: Colors.black,
-                                radius: 30,
-                                child: Icon(
-                                  Icons.add_rounded,
-                                  color: Colors.white,
-                                ),
+                          ),
+                          IconButton(
+                            onPressed: () => addToCart(state.items),
+                            icon: const CircleAvatar(
+                              backgroundColor: Colors.black,
+                              radius: 30,
+                              child: Icon(
+                                Icons.add_rounded,
+                                color: Colors.white,
                               ),
                             ),
-                          ]),
-                          Text(
-                            'Итого: \$' +
-                                (widget.product.price *
-                                        _getNumberOfCartProduct(state.items))
-                                    .toString(),
-                            style: const TextStyle(fontSize: 24),
                           ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            textStyle: const TextStyle(fontSize: 20),
-                            primary: Colors.black,
-                          ),
-                          onPressed: () {
-                            Dependencies.instance.navigator.openCartPage();
-                          },
-                          child: const Text('Перейти в корзину'),
+                        ]),
+                        Text(
+                          'Итого: \$' +
+                              (widget.product.price *
+                                      _getNumberOfCartProduct(state.items))
+                                  .toString(),
+                          style: const TextStyle(fontSize: 24),
                         ),
-                      )
-                    ],
-                  ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          textStyle: const TextStyle(fontSize: 20),
+                          primary: Colors.black,
+                        ),
+                        onPressed: () {
+                          Dependencies.instance.navigator.openCartPage();
+                        },
+                        child: const Text('Перейти в корзину'),
+                      ),
+                    )
+                  ],
                 ),
               ),
-            );
-          }),
-      // bottomNavigationBar: StoreConnector<GlobalState, CartPageState>(
-      //     converter: (store) => store.state.cartPage,
-      //     builder: (context, state) {
-      //       return Column(
-      //         mainAxisSize: MainAxisSize.min,
-      //         children: [
-      //           Row(
-      //             children: [
-      //               if (_getNumberOfCartProduct(state.items) > 0)
-      //                 Flexible(
-      //                   flex: 1,
-      //                   child: Padding(
-      //                     padding: const EdgeInsets.all(10.0),
-      //                     child: Container(
-      //                       height: 60,
-      //                       decoration: ShapeDecoration(
-      //                         shape: RoundedRectangleBorder(
-      //                           borderRadius: BorderRadius.circular(20.0),
-      //                           side: const BorderSide(
-      //                             width: 1,
-      //                             color: Colors.black,
-      //                           ),
-      //                         ),
-      //                       ),
-      //                       child: TextButton(
-      //                         onPressed: () {
-      //                           removeFromCart(state.items);
-      //                         },
-      //                         child: const Text("-"),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                 ),
-      //               if (_getNumberOfCartProduct(state.items) == 0)
-      //                 Flexible(
-      //                   flex: 3,
-      //                   child: Padding(
-      //                     padding: const EdgeInsets.symmetric(vertical: 20),
-      //                     child: Center(
-      //                       child: Container(
-      //                         height: 60,
-      //                         decoration: ShapeDecoration(
-      //                           shape: RoundedRectangleBorder(
-      //                             borderRadius: BorderRadius.circular(20.0),
-      //                             side: const BorderSide(
-      //                               width: 1,
-      //                               color: Colors.black,
-      //                             ),
-      //                           ),
-      //                         ),
-      //                         child: TextButton(
-      //                           onPressed: () {
-      //                             addToCart(state.items);
-      //                             getExtraButton();
-      //                           },
-      //                           child: const Text(
-      //                             "Добавить в корзину",
-      //                           ),
-      //                         ),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                 ),
-      //               if (_getNumberOfCartProduct(state.items) > 0)
-      //                 Flexible(
-      //                   flex: 3,
-      //                   child: Padding(
-      //                     padding: const EdgeInsets.all(10.0),
-      //                     child: Container(
-      //                       height: 60,
-      //                       decoration: ShapeDecoration(
-      //                         shape: RoundedRectangleBorder(
-      //                           borderRadius: BorderRadius.circular(20.0),
-      //                           side: const BorderSide(
-      //                             width: 1,
-      //                             color: Colors.black,
-      //                           ),
-      //                         ),
-      //                       ),
-      //                       child: Center(
-      //                           child: Text(
-      //                               '${_getNumberOfCartProduct(state.items)}')),
-      //                     ),
-      //                   ),
-      //                 ),
-      //               if (_getNumberOfCartProduct(state.items) != 0)
-      //                 Flexible(
-      //                   flex: 1,
-      //                   child: Padding(
-      //                     padding: const EdgeInsets.all(10.0),
-      //                     child: Container(
-      //                       height: 60,
-      //                       decoration: ShapeDecoration(
-      //                         shape: RoundedRectangleBorder(
-      //                           borderRadius: BorderRadius.circular(20.0),
-      //                           side: const BorderSide(
-      //                             width: 1,
-      //                             color: Colors.black,
-      //                           ),
-      //                         ),
-      //                       ),
-      //                       child: TextButton(
-      //                         onPressed: () {
-      //                           addToCart(state.items);
-      //                         },
-      //                         child: const Text("+"),
-      //                       ),
-      //                     ),
-      //                   ),
-      //                 ),
-      //             ],
-      //           ),
-      //           if (_getNumberOfCartProduct(state.items) > 0)
-      //             Padding(
-      //               padding: const EdgeInsets.only(bottom: 15),
-      //               child: Container(
-      //                 height: 60,
-      //                 width: 200,
-      //                 decoration: ShapeDecoration(
-      //                   shape: RoundedRectangleBorder(
-      //                     borderRadius: BorderRadius.circular(20.0),
-      //                     side: const BorderSide(
-      //                       width: 1,
-      //                       color: Colors.black,
-      //                     ),
-      //                   ),
-      //                 ),
-      //                 child: TextButton(
-      //                   // переход в корзину
-      //                   onPressed: () {
-      //                     Dependencies.instance.navigator.openCartPage();
-      //                   },
-      //                   child: const Text("Перейти в корзину"),
-      //                 ),
-      //               ),
-      //             ),
-      //         ],
-      //       );
-      //     }),
+            ),
+          );
+        },
+      ),
     );
   }
 }
