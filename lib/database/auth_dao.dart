@@ -10,11 +10,11 @@ class AuthDaoApi extends AuthDao {
 
   @override
   User? getCurrentUser() {
-    HiveUser? user_model = database.get('user');
-    if (user_model == null) {
+    HiveUser? userModel = database.get('user');
+    if (userModel == null) {
       return null;
     }
-    return user_model.toUser();
+    return userModel.toUser();
   }
 
   @override

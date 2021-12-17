@@ -1,4 +1,3 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
@@ -88,7 +87,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     return ProductCard(
                       product: state.results[i],
                       showTags: false,
-                      onTap: () => Dependencies.instance.navigator.openProduct(state.results[i]),
+                      onTap: () => Dependencies.instance.navigator
+                          .openProduct(state.results[i]),
                     );
                   },
                   itemCount: state.results.length,

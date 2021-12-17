@@ -8,5 +8,5 @@ final Reducer<CartPageState> cartPageReducer = combineReducers<CartPageState>([
 ]);
 
 CartPageState _setFeedItemsAction(
-    CartPageState state, SetCartItemsListAction action) =>
+        CartPageState state, SetCartItemsListAction action) =>
     state.copyWith(items: action.items);

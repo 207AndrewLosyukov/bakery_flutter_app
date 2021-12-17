@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
-import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/main_page/state.dart';
 import 'package:shop_flutter_app/redux/main_page/thunk.dart';
 import 'package:shop_flutter_app/redux/state.dart';
@@ -85,16 +84,6 @@ class _MainTabState extends State<MainTab> {
                             icon: const Icon(Icons.search),
                             // label: const Text('Поиск'),
                           ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
                         ],
                       ),
                     ),

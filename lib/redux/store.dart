@@ -7,7 +7,6 @@ import 'package:shop_flutter_app/redux/state.dart';
 import 'package:redux_thunk/redux_thunk.dart';
 
 import 'cart_page/reducer.dart';
-import 'cart_page/state.dart';
 
 class MyStoreBuilder {
   MyStoreBuilder._();
