@@ -71,7 +71,7 @@ class CartItem extends StatelessWidget {
                             children: [
                               Expanded(
                                 child: Text(
-                                  '\$' + data.product.price.toString(),
+                                  '\$' + (data.amount * data.product.price).toString(),
                                   style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
