@@ -1,6 +1,7 @@
 import 'package:shop_flutter_app/data_api/network_dao.dart';
 import 'package:shop_flutter_app/models/product.dart';
 import 'package:dio/dio.dart';
+import '../dependencies.dart';
 
 class NetworkApi extends ProductApiDao {
   static const _rootUrl = 'https://server-shop-flutter-app.herokuapp.com/';
