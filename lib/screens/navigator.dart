@@ -22,6 +22,11 @@ class AppNavigator {
     // ));
   }
 
+  openErrorPage() => navigatorKey.currentState
+          ?.pushReplacement(MaterialPageRoute(builder: (context) {
+        return const ErrDaoNoConnection();
+      }));
+  
   openAuthPage() => navigatorKey.currentState?.push(MaterialPageRoute(
         builder: (context) => const AuthScreen(),
       ));
