@@ -1,12 +1,9 @@
 name: Flutter CI
 
-# This workflow is triggered on pushes to the repository.
-
 on:
   push:
     tags:
       - 'v*.*.*'
-  pull_request:
 
 jobs:
   analyze:
