@@ -20,13 +20,14 @@ class ProductCard extends StatelessWidget {
         onTap: onTap,
         child: Container(
           decoration: ShapeDecoration(
-            image: product.imageUrl==null?null:DecorationImage(
-              image: NetworkImage
-              (
-                product.imageUrl ?? "",
-              ),
-              fit: BoxFit.cover,
-            ),
+            image: product.imageUrl == null
+                ? null
+                : DecorationImage(
+                    image: NetworkImage(
+                      product.imageUrl ?? "",
+                    ),
+                    fit: BoxFit.cover,
+                  ),
             color: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(24.0),

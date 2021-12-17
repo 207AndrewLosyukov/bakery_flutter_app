@@ -24,8 +24,7 @@ SearchPageState _setLoadingAction(
       isLoading: true,
     );
 
-SearchPageState _setErrorAction(
-        SearchPageState state, SetErrorAction action) =>
+SearchPageState _setErrorAction(SearchPageState state, SetErrorAction action) =>
     state.copyWith(
       isLoading: false,
       isError: true,

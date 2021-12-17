@@ -19,7 +19,8 @@ class Dependencies {
   final AuthDao authDao;
 
   static late Dependencies _instance;
-  Dependencies._(this.navigator, this.productsApi, this.cartProductDao, this.authDao);
+  Dependencies._(
+      this.navigator, this.productsApi, this.cartProductDao, this.authDao);
 
   static Future<Dependencies> init() async {
     final hiveBuilder = await HiveBuilder.build();

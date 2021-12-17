@@ -16,7 +16,8 @@ int? _getCartProductIndexById(String id, List<CartProduct> items) {
   return null;
 }
 
-class InsertProduct extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
+class InsertProduct
+    extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
   final Product product;
 
   InsertProduct(this.product);
@@ -96,7 +97,6 @@ class DeleteProduct
 
 class ClearCart
     extends CallableThunkActionWithExtraArgument<GlobalState, Dependencies> {
-
   ClearCart();
 
   @override

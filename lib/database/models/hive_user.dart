@@ -19,7 +19,11 @@ class HiveUser {
   });
 
   static HiveUser fromUser(User user) {
-    return HiveUser(nickname: user.nickname, email: user.email, imageURL: user.imageURL);
+    return HiveUser(
+      nickname: user.nickname,
+      email: user.email,
+      imageURL: user.imageURL,
+    );
   }
 
   User toUser() {

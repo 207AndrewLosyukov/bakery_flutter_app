@@ -19,7 +19,6 @@ class _OrderTextField extends StatelessWidget {
       required this.controller})
       : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -57,11 +56,11 @@ class _OrderScreenState extends State<OrderScreen> {
   String? nameErrorText;
 
   validator(String key) => (String? value) {
-    if (value == null || value.isEmpty) {
-      return "Значение не должно быть пустым";
-    }
-    return null;
-  };
+        if (value == null || value.isEmpty) {
+          return "Значение не должно быть пустым";
+        }
+        return null;
+      };
 
   // String? phoneValidator(String? value) {
   //   if (value == null || value.isEmpty) {

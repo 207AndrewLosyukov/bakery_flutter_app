@@ -4,7 +4,6 @@ import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 
 import '../dependencies.dart';
 
-
 void main() async {
   await Dependencies.init();
   runApp(const MyApp());
@@ -53,8 +52,6 @@ class MyApp2 extends StatefulWidget {
 
   @override
   _MyAppState createState() => _MyAppState();
-
-
 }
 
 class _MyAppState extends State<MyApp2> {
@@ -63,4 +60,3 @@ class _MyAppState extends State<MyApp2> {
     return const Scaffold(body: CartTab());
   }
 }
-
