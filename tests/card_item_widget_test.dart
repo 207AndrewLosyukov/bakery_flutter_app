@@ -1,13 +1,18 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:shop_flutter_app/components/cart/cart_item.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
+import 'package:shop_flutter_app/dependencies.dart';
 import 'package:shop_flutter_app/models/product.dart';
+import 'package:shop_flutter_app/screens/product.dart';
 
 void main() {
   // Define a test. The TestWidgets function also provides a WidgetTester
   // to work with. The WidgetTester allows building and interacting
   // with widgets in the test environment.
-  testWidgets('MyWidget has a title and message', (WidgetTester tester) async {
+  testWidgets('Check Widget ProductCard based on Product', (WidgetTester tester) async {
     // Create the widget by telling the tester to build it.
     Product product = Product.testProduct;
     await tester.pumpWidget(MaterialApp(
