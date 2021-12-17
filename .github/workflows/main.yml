@@ -29,8 +29,9 @@ jobs:
         with:
           flutter-version: ${{ matrix.flutter }}
       - run: flutter pub get
-      - run: flutter analyze
-      - run: flutter format --set-exit-if-changed .
+#      - run: flutter analyze
+#      - run: flutter format --set-exit-if-changed .
+      - run: flutter test tests
   build:
     needs: analyze
     name: Build ${{ matrix.target }} on ${{ matrix.os }}
