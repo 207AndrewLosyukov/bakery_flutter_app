@@ -27,12 +27,6 @@ class _CartItemListState extends State<CartItemList> {
     Dependencies.instance.store.dispatch(DecreaseNumberOfProducts(id));
   }
 
-  void _removeItem(int index) {
-    // if (amounts[index] == 0) {
-    //   amounts.removeAt(index);
-    // }
-  }
-
   Widget _getItem(int index, List<CartProduct> items) {
     return CartItem(
       onAmountDecreased: _decreaseCounter,

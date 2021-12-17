@@ -1,9 +1,7 @@
 import 'dart:developer';
 import 'package:shop_flutter_app/dependencies.dart';
-import 'package:shop_flutter_app/screens/navigator.dart';
 
 import 'package:flutter/material.dart';
-import 'package:shop_flutter_app/screens/ready_order.dart';
 
 class _OrderTextField extends StatelessWidget {
   final String? hintText;
@@ -20,7 +18,6 @@ class _OrderTextField extends StatelessWidget {
       required this.validator,
       required this.controller})
       : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +56,11 @@ class _OrderScreenState extends State<OrderScreen> {
   String? nameErrorText;
 
   validator(String key) => (String? value) {
-    if (value == null || value.isEmpty) {
-      return "Значение не должно быть пустым";
-    }
-    return null;
-  };
+        if (value == null || value.isEmpty) {
+          return "Значение не должно быть пустым";
+        }
+        return null;
+      };
 
   // String? phoneValidator(String? value) {
   //   if (value == null || value.isEmpty) {

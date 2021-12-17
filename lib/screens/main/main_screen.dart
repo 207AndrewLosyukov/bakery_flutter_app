@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shop_flutter_app/screens/main/cart_tab.dart';
 import 'package:shop_flutter_app/screens/main/main_tab.dart';
 import 'package:shop_flutter_app/screens/main/profile_tab.dart';

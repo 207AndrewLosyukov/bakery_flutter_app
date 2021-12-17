@@ -1,5 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
@@ -17,6 +17,12 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController textController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    Dependencies.instance.store.dispatch(Search(''));
+  }
+
   void onChanged(String text) {
     Dependencies.instance.store.dispatch(Search(text));
   }
@@ -33,10 +39,15 @@ class _SearchScreenState extends State<SearchScreen> {
       ),
       body: Column(
         children: [
-          TextField(
-            autofocus: true,
-            onChanged: onChanged,
-            controller: textController,
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: CupertinoTextField(
+              autofocus: true,
+              onChanged: onChanged,
+              controller: textController,
+              padding: const EdgeInsets.all(12),
+              placeholder: "Например, круассан",
+            ),
           ),
           StoreConnector<GlobalState, SearchPageState>(
             distinct: true,
@@ -44,13 +55,13 @@ class _SearchScreenState extends State<SearchScreen> {
             builder: (context, state) {
               if (state.isLoading) {
                 return const Expanded(
-                    child: Center(child: CircularProgressIndicator()));
+                    child: Center(child: CupertinoActivityIndicator()));
               }
               if (state.isError) {
                 return Expanded(
                   child: Center(
                     child: TextButton(
-                      child: const Text("Retry"),
+                      child: const Text("Попробовать снова"),
                       onPressed: retry,
                     ),
                   ),
@@ -59,7 +70,7 @@ class _SearchScreenState extends State<SearchScreen> {
               if (state.results.isEmpty) {
                 return const Expanded(
                   child: Center(
-                    child: Text("No results"),
+                    child: Text("Ничего не нашлось :("),
                   ),
                 );
               }
@@ -76,6 +87,8 @@ class _SearchScreenState extends State<SearchScreen> {
                     return ProductCard(
                       product: state.results[i],
                       showTags: false,
+                      onTap: () => Dependencies.instance.navigator
+                          .openProduct(state.results[i]),
                     );
                   },
                   itemCount: state.results.length,

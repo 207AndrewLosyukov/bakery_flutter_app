@@ -10,6 +10,7 @@ class CartProduct {
   });
 
   CartProduct copyWith({Product? product, int? amount}) {
-    return CartProduct(amount: amount ?? this.amount, product: product ?? this.product);
+    return CartProduct(
+        amount: amount ?? this.amount, product: product ?? this.product);
   }
 }

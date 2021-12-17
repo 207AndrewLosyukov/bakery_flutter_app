@@ -3,9 +3,7 @@ import 'package:shop_flutter_app/data_api/auth_dao.dart';
 import 'package:shop_flutter_app/data_api/database_dao.dart';
 import 'package:shop_flutter_app/database/cart_dao.dart';
 import 'package:shop_flutter_app/database/init_hive.dart';
-import 'package:shop_flutter_app/database/models/hive_product.dart';
 import 'package:shop_flutter_app/network/dao.dart';
-import 'package:shop_flutter_app/network/products_api.dart';
 import 'package:shop_flutter_app/redux/state.dart';
 import 'package:shop_flutter_app/redux/store.dart';
 import 'package:shop_flutter_app/screens/navigator.dart';
@@ -21,7 +19,8 @@ class Dependencies {
   final AuthDao authDao;
 
   static late Dependencies _instance;
-  Dependencies._(this.navigator, this.productsApi, this.cartProductDao, this.authDao);
+  Dependencies._(
+      this.navigator, this.productsApi, this.cartProductDao, this.authDao);
 
   static Future<Dependencies> init() async {
     final hiveBuilder = await HiveBuilder.build();

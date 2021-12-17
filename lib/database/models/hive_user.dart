@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import 'package:shop_flutter_app/models/tag.dart';
 import 'package:shop_flutter_app/models/user.dart';
 
 part 'hive_user.g.dart';
@@ -20,7 +19,11 @@ class HiveUser {
   });
 
   static HiveUser fromUser(User user) {
-    return HiveUser(nickname: user.nickname, email: user.email, imageURL: user.imageURL);
+    return HiveUser(
+      nickname: user.nickname,
+      email: user.email,
+      imageURL: user.imageURL,
+    );
   }
 
   User toUser() {
