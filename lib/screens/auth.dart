@@ -16,9 +16,11 @@ class _OrderTextField extends StatelessWidget {
   final TextEditingController controller;
   final String? error;
   final Function cancelError;
+  final isPassword;
 
   const _OrderTextField(
       {Key? key,
+        required this.isPassword,
       this.hintText,
       this.error,
       required this.cancelError,
@@ -31,6 +33,7 @@ class _OrderTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 8, 0, 8),
       child: TextFormField(
+        obscureText: isPassword ? true : false,
         onTap: () => cancelError(),
         controller: controller,
         decoration: InputDecoration(
@@ -127,6 +130,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                         if (doesWantToAuth)
                           _OrderTextField(
+                            isPassword: false,
                             controller: emailController,
                             hintText: 'E-mail',
                             validator: validator(passController.text),
@@ -134,6 +138,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           ),
                         if (doesWantToAuth)
                           _OrderTextField(
+                            isPassword: true,
                             controller: passController,
                             hintText: 'Password',
                             validator: validator(emailController.text),
