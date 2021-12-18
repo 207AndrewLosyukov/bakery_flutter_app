@@ -59,5 +59,8 @@
     
 ### Схема архитектуры
 [Miro](https://miro.com/app/board/uXjVOabaAlE=)
+
+### Презентация
+[Google Sheets](https://docs.google.com/presentation/d/1sqET3eDBf6QGj-qh8O7qgQRKecmiHDculUj3ZddjTuU/edit)
     
 
