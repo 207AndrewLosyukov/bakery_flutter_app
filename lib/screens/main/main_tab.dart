@@ -29,7 +29,7 @@ class _MainTabState extends State<MainTab> {
         builder: (context, state) {
           final recommendedItems = state.items
               .where((element) =>
-              element.tags.any((element) => element.id == 'recommended'))
+                  element.tags.any((element) => element.id == 'recommended'))
               .toList();
           if (!state.isLoaded) {
             return const Center(child: CupertinoActivityIndicator(radius: 8));
@@ -75,9 +75,8 @@ class _MainTabState extends State<MainTab> {
                                     child: const Text(
                                       "Перейти в профиль",
                                     ),
-                                    onTap: () =>
-                                        Dependencies.instance.navigator
-                                            .openAuthPage(),
+                                    onTap: () => Dependencies.instance.navigator
+                                        .openAuthPage(),
                                   ),
                                 ],
                               ),
@@ -113,16 +112,14 @@ class _MainTabState extends State<MainTab> {
                       child: ListView.separated(
                         padding: const EdgeInsets.all(16),
                         separatorBuilder: (context, index) =>
-                        const SizedBox(width: 16),
+                            const SizedBox(width: 16),
                         scrollDirection: Axis.horizontal,
                         itemCount: recommendedItems.length,
-                        itemBuilder: (context, i) =>
-                            ProductCard(
-                              product: recommendedItems[i],
-                              onTap: () =>
-                                  Dependencies.instance.navigator
-                                      .openProduct(recommendedItems[i]),
-                            ),
+                        itemBuilder: (context, i) => ProductCard(
+                          product: recommendedItems[i],
+                          onTap: () => Dependencies.instance.navigator
+                              .openProduct(recommendedItems[i]),
+                        ),
                       ),
                     ),
                   ),
@@ -132,14 +129,10 @@ class _MainTabState extends State<MainTab> {
                     backgroundColor: Colors.orange[100],
                     bottom: TabBar(
                       overlayColor: MaterialStateColor.resolveWith(
-                              (states) => Colors.transparent),
+                          (states) => Colors.transparent),
                       indicatorColor: Colors.transparent,
-                      labelColor: Theme
-                          .of(context)
-                          .shadowColor,
-                      unselectedLabelColor: Theme
-                          .of(context)
-                          .primaryColor,
+                      labelColor: Theme.of(context).shadowColor,
+                      unselectedLabelColor: Theme.of(context).primaryColor,
                       physics: const BouncingScrollPhysics(),
                       isScrollable: true,
                       tabs: const [
@@ -158,7 +151,7 @@ class _MainTabState extends State<MainTab> {
                       enableFeedback: true,
                       indicator: BoxDecoration(
                           borderRadius:
-                          BorderRadius.circular(16), // Creates border
+                              BorderRadius.circular(16), // Creates border
                           color: Colors.black.withOpacity(0.1)),
                       padding: const EdgeInsets.all(8),
                       // indicatorSize: TabBarIndicatorSize.tab,
@@ -180,22 +173,18 @@ class _MainTabState extends State<MainTab> {
                             final currentTab = tabController.index;
                             if (currentTab == 0) {
                               return buildTab(state.items
-                                  .where((element) =>
-                                  element.tags
+                                  .where((element) => element.tags
                                       .any((element) => element.id == 'new'))
                                   .toList());
                             } else if (currentTab == 1) {
                               return buildTab(state.items
-                                  .where((element) =>
-                                  element.tags.any(
-                                          (element) =>
-                                      element.id == 'discount'))
+                                  .where((element) => element.tags.any(
+                                      (element) => element.id == 'discount'))
                                   .toList());
                             } else {
                               return buildTab(state.items
-                                  .where((element) =>
-                                  element.tags.any(
-                                          (element) => element.id == 'recommended'))
+                                  .where((element) => element.tags.any(
+                                      (element) => element.id == 'popular'))
                                   .toList());
                             }
                           },
@@ -213,7 +202,7 @@ class _MainTabState extends State<MainTab> {
   Widget buildTab(List<Product> products) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
-            (context, i) {
+        (context, i) {
           return ProductCard(
             product: products[i],
             showTags: false,
