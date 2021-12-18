@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_redux/flutter_redux.dart';
 import 'package:shop_flutter_app/components/product_card.dart';
 import 'package:shop_flutter_app/dependencies.dart';
+import 'package:shop_flutter_app/models/product.dart';
 import 'package:shop_flutter_app/redux/main_page/state.dart';
 import 'package:shop_flutter_app/redux/main_page/thunk.dart';
 import 'package:shop_flutter_app/redux/state.dart';
@@ -26,6 +27,10 @@ class _MainTabState extends State<MainTab> {
     return StoreConnector<GlobalState, MainPageState>(
         converter: (store) => store.state.mainPage,
         builder: (context, state) {
+          final recommendedItems = state.items
+              .where((element) =>
+                  element.tags.any((element) => element.id == 'recommended'))
+              .toList();
           if (!state.isLoaded) {
             return const Center(child: CupertinoActivityIndicator(radius: 8));
           }
@@ -109,11 +114,11 @@ class _MainTabState extends State<MainTab> {
                         separatorBuilder: (context, index) =>
                             const SizedBox(width: 16),
                         scrollDirection: Axis.horizontal,
-                        itemCount: state.items.length,
+                        itemCount: recommendedItems.length,
                         itemBuilder: (context, i) => ProductCard(
-                          product: state.items[i],
+                          product: recommendedItems[i],
                           onTap: () => Dependencies.instance.navigator
-                              .openProduct(state.items[i]),
+                              .openProduct(recommendedItems[i]),
                         ),
                       ),
                     ),
@@ -167,11 +172,20 @@ class _MainTabState extends State<MainTab> {
                           builder: (context, i) {
                             final currentTab = tabController.index;
                             if (currentTab == 0) {
-                              return buildTab2(state);
+                              return buildTab(state.items
+                                  .where((element) => element.tags
+                                      .any((element) => element.id == 'new'))
+                                  .toList());
                             } else if (currentTab == 1) {
-                              return buildTab1(state);
+                              return buildTab(state.items
+                                  .where((element) => element.tags.any(
+                                      (element) => element.id == 'discount'))
+                                  .toList());
                             } else {
-                              return buildTab2(state);
+                              return buildTab(state.items
+                                  .where((element) => element.tags.any(
+                                      (element) => element.id == 'popular'))
+                                  .toList());
                             }
                           },
                         );
@@ -185,18 +199,18 @@ class _MainTabState extends State<MainTab> {
         });
   }
 
-  Widget buildTab1(MainPageState state) {
+  Widget buildTab(List<Product> products) {
     return SliverGrid(
       delegate: SliverChildBuilderDelegate(
         (context, i) {
           return ProductCard(
-            product: state.items[i],
+            product: products[i],
             showTags: false,
             onTap: () =>
-                Dependencies.instance.navigator.openProduct(state.items[i]),
+                Dependencies.instance.navigator.openProduct(products[i]),
           );
         },
-        childCount: state.items.length,
+        childCount: products.length,
       ),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         mainAxisSpacing: 12,
@@ -206,26 +220,3 @@ class _MainTabState extends State<MainTab> {
       ),
     );
   }
-
-  Widget buildTab2(state) {
-    return SliverGrid(
-      delegate: SliverChildBuilderDelegate(
-        (context, i) {
-          return ProductCard(
-            product: state.items[i],
-            showTags: false,
-            onTap: () =>
-                Dependencies.instance.navigator.openProduct(state.items[i]),
-          );
-        },
-        childCount: state.items.length,
-      ),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        mainAxisSpacing: 12,
-        crossAxisSpacing: 12,
-        crossAxisCount: 2,
-        childAspectRatio: 16 / 9,
-      ),
-    );
-  }
-}
